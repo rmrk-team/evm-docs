@@ -1,0 +1,8 @@
+{
+  "RMRKCatalogImpl": "Catalog Impl",
+  "abstract": "Abstract",
+  "lazyMintErc20": "Lazy Mint ERC20",
+  "lazyMintNative": "Lazy Mint Native",
+  "premint": "Premint",
+  "utils": "Utils"
+}

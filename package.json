@@ -1,0 +1,36 @@
+{
+  "name": "rmrk-evm-docs",
+  "version": "0.1.0",
+  "description": "RMRK EVM Docs",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmrk-team/evm-docs.git"
+  },
+  "author": "RMRK Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmrk-team/evm-docs/issues"
+  },
+  "homepage": "https://evm.rmrk.app",
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.0.0",
+    "next": "13.0.6",
+    "nextra": "2.13.2",
+    "nextra-theme-docs": "2.13.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "@types/react": "18.2.45",
+    "prettier": "^3.1.0",
+    "typescript": "^4.9.3"
+  }
+}
