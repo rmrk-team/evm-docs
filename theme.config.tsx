@@ -36,7 +36,7 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://github.com/rmrk-team",
   },
-  docsRepositoryBase: "https://github.com/rmrk-team/evm-docs",
+  docsRepositoryBase: "https://github.com/rmrk-team/evm-docs/tree/master",
   footer: {
     // text: "RMRK EVM Docs",
     component: <></>,
