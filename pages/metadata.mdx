@@ -114,6 +114,36 @@ For backwards compatibility with `ERC721Metadata`, smart contracts are expected 
           "type": "string",
           "description": "A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive."
         },
+        "attributes": {
+          "type": "array",
+          "description": "Custom attributes about the subject or content of the asset.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Name of the attribute, e.g. 'Level'"
+              },
+              "value": {
+                "type": "string",
+                "description": "Value of the attribute, e.g. '1'"
+              },
+              "type": {
+                "type": "string",
+                "description": "Type of the attribute, e.g. 'number', 'float', 'integer', 'string', 'date', 'percentage', 'boolean'"
+              },
+              "trait_type": {
+                "type": "string",
+                "description": "For backwards compatibility with ERC721Metadata. Can be the same as label"
+              },
+              "display_type": {
+                "type": "string",
+                "description": "For backwards compatibility with ERC721Metadata. [See here for more](https://docs.opensea.io/docs/metadata-standards#attributes)"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
       },
       "additionalProperties": true
     }
@@ -126,9 +156,41 @@ For backwards compatibility with `ERC721Metadata`, smart contracts are expected 
   <Tabs.Tab>
     ```json copy
     {
-      "name": "Cool NFT",
-      "description": "Hey there, I'm just here being cool",
-      "image": "ipfs://ABC"
+      "name": "Spacer Admiral",
+      "description": "This Spacer Admiral is one of the highest-ranking commanders in The Spacer Fleet. It is responsible for ensuring the fleet maintains a trajectory towards its goals. Overseeing 90 Captains, the Admiral provides strategic guidance and leadership to ensure the success of the entire fleet.",
+      "externalUri": "https://spacers.app/",
+      "external_url": "https://spacers.app/",
+      "image": "ipfs://QmZsmy2a54ybyff7cVa67kEQFU9zzwQqQ7cjF7HSF97A77/prerender/2.png",
+      "mediaUri": "ipfs://QmZsmy2a54ybyff7cVa67kEQFU9zzwQqQ7cjF7HSF97A77/prerender/2.png",
+      "thumbnailUri": "ipfs://QmZsmy2a54ybyff7cVa67kEQFU9zzwQqQ7cjF7HSF97A77/prerender/2.png",
+      "license": "PERSONAL LICENSE (\"CBE-PERSONAL\")",
+      "licenseUri": "https://arweave.net/zmc1WTspIhFyVY82bwfAIcIExLFH5lUcHHUN0wXg4W8/4",
+      "attributes": [
+        {
+          "label": "Body",
+          "type": "string",
+          "value": "Subsocial",
+          "trait_type": "Body"
+        },
+        {
+          "label": "Hand",
+          "type": "string",
+          "value": "Subsocial",
+          "trait_type": "Hand"
+        },
+        {
+          "label": "Head",
+          "type": "string",
+          "value": "Subsocial",
+          "trait_type": "Head"
+        },
+        {
+          "label": "Belt",
+          "type": "string",
+          "value": "Backpack Smiley",
+          "trait_type": "Belt"
+        }
+      ]
     }
     ```
   </Tabs.Tab>
@@ -220,7 +282,7 @@ To properly manage multiple assets, we have defined new fields and renamed some 
             },
             "additionalProperties": true
           }
-        },
+        }
       },
       "additionalProperties": true,
       "required": [
