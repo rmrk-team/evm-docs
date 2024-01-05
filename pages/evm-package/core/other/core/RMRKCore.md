@@ -21,7 +21,7 @@ Interface identifier of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Version of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

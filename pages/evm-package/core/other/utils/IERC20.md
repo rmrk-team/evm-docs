@@ -20,14 +20,14 @@ Used to grant permission to an account to spend the tokens of another
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address that owns the tokens |
 | spender | address | Address that is being granted the permission to spend the tokens of the `owner` |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -43,14 +43,14 @@ Used to transfer tokens from the caller&#39;s account to another.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | to | address | Address of the account to which the tokens are being transferred |
 | amount | uint256 | Amount of tokens that are being transferred |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -66,7 +66,7 @@ Used to transfer tokens from one address to another.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -74,7 +74,7 @@ Used to transfer tokens from one address to another.
 | to | address | Address of the account to which the tokens are being transferred |
 | amount | uint256 | Amount of tokens that are being transferred |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

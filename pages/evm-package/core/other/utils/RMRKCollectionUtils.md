@@ -20,13 +20,13 @@ Used to get the collection data of a specified collection.
 
 *The full `CollectionData` struct looks like this:  [      totalSupply,      maxSupply,      royaltyPercentage,      royaltyRecipient,      owner,      symbol,      name,      collectionMetadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the collection to get the data from |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -42,13 +42,13 @@ Used to get the interface support of a specified collection.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the collection to get the interface support from |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -69,7 +69,7 @@ Used to get a list of existing token IDs in the range between `pageStart` and `p
 
 *It is not optimized to avoid checking IDs out of max supply nor total supply, since this is not meant to be  used during transaction execution; it is only meant to be used as a getter.The resulting array might be smaller than the given `pageSize` since no-existent IDs are not included.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -77,7 +77,7 @@ Used to get a list of existing token IDs in the range between `pageStart` and `p
 | pageStart | uint256 | The first ID to check |
 | pageSize | uint256 | The number of IDs to check |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -93,7 +93,7 @@ Triggers an event to refresh the collection metadata.
 
 *It will do nothing if the given collection address is not a contract.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -111,7 +111,7 @@ Triggers an event to refresh the token metadata.
 
 *It will do nothing if the given collection address is not a contract.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -132,7 +132,7 @@ This event emits when the metadata of a range of tokens is changed. So that the 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -150,7 +150,7 @@ This event emits when the metadata of a token is changed. So that the third-part
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

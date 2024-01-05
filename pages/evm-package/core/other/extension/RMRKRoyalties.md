@@ -21,7 +21,7 @@ Used to retrieve the specified royalty percentage.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Used to retrieve the recipient of royalties.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -54,14 +54,14 @@ Used to retrieve the information about who shall receive royalties of a sale of 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the royalty info is being retrieved |
 | salePrice | uint256 | Price of the token sale |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -78,7 +78,7 @@ Used to update recipient of royalties.
 
 *Custom access control has to be implemented to ensure that only the intended actors can update the  beneficiary.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

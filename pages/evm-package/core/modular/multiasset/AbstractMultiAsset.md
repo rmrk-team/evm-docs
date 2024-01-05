@@ -20,7 +20,7 @@ Accepts an asset at from the pending array of given token.
 
 *Migrates the asset from the token&#39;s pending asset array to the token&#39;s active asset array.Active assets cannot be removed by anyone, but can be replaced by a new asset.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - `index` must be in range of the length of the pending asset array.Emits an {AssetAccepted} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Used to grant permission to the user to manage token&#39;s assets.
 
 *This differs from transfer approvals, as approvals are not cleared when the approved party accepts or  rejects an asset, or sets asset priorities. This approval is cleared on token transfer.Only a single account can be approved at a time, so approving the `0x0` address clears previous approvals.Requirements:  - The caller must own the token or be an approved operator.  - `tokenId` must exist.Emits an {ApprovalForAssets} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -55,13 +55,13 @@ Used to retrieve the priorities of the active resoources of a given token.
 
 *Asset priorities are a non-sequential array of uint64 values with an array size equal to active asset  priorites.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the priorities of the active assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -77,13 +77,13 @@ Used to retrieve IDs of the active assets of given token.
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.You can safely get 10k*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the IDs of the active assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -99,13 +99,13 @@ Used to retrieve the address of the account approved to manage assets of a given
 
 *Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the approved address |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -121,14 +121,14 @@ Used to fetch the asset metadata of the specified token&#39;s active asset with 
 
 *Assets are stored by reference mapping `_assets[assetId]`.Can be overriden to implement enumerate, fallback or other custom logic.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token from which to retrieve the asset metadata |
 | assetId | uint64 | Asset Id, must be in the active assets array |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -144,14 +144,14 @@ Used to retrieve the asset that will be replaced if a given asset from the token
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to check |
 | newAssetId | uint64 | ID of the pending asset which will be accepted |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -167,13 +167,13 @@ Used to retrieve IDs of the pending assets of given token.
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the IDs of the pending assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -189,14 +189,14 @@ Used to check whether the address has been granted the operator role by a given 
 
 *See {setApprovalForAllForAssets}.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the account that we are checking for whether it has granted the operator role |
 | operator | address | Address of the account that we are checking whether it has the operator role or not |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -212,7 +212,7 @@ Rejects all assets from the pending array of a given token.
 
 *Effecitvely deletes the pending array.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.Emits a {AssetRejected} event with assetId = 0.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -229,7 +229,7 @@ Rejects an asset from the pending array of given token.
 
 *Removes the asset from the token&#39;s pending asset array.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - `index` must be in range of the length of the pending asset array.Emits a {AssetRejected} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -247,7 +247,7 @@ Used to add or remove an operator of assets for the caller.
 
 *Operators can call {acceptAsset}, {rejectAsset}, {rejectAllAssets} or {setPriority} for any token  owned by the caller.Requirements:  - The `operator` cannot be the caller.Emits an {ApprovalForAllForAssets} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -264,7 +264,7 @@ Sets a new priority array for a given token.
 
 *The priority array is a non-sequential list of `uint64`s, where the lowest value is considered highest  priority.Value `0` of a priority is a special case equivalent to unitialized.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - The length of `priorities` must be equal the length of the active assets array.Emits a {AssetPrioritySet} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -281,13 +281,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -307,7 +307,7 @@ Used to notify listeners that owner has granted approval to the user to manage a
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -325,7 +325,7 @@ Used to notify listeners that owner has granted an approval to the user to manag
 
 *Approvals must be cleared on transfer*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -343,7 +343,7 @@ Used to notify listeners that an asset object at `assetId` is accepted by the to
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -361,7 +361,7 @@ Used to notify listeners that an asset object at `assetId` is added to token&#39
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -379,7 +379,7 @@ Used to notify listeners that token&#39;s prioritiy array is reordered.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -395,7 +395,7 @@ Used to notify listeners that an asset object at `assetId` is rejected from toke
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -412,7 +412,7 @@ Used to notify listeners that an asset object is initialized at `assetId`.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

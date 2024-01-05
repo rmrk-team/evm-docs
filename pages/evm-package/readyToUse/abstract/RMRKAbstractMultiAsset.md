@@ -21,7 +21,7 @@ Interface identifier of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Version of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -54,7 +54,7 @@ Accepts an asset at from the pending array of given token.
 
 *Migrates the asset from the token&#39;s pending asset array to the token&#39;s active asset array.Active assets cannot be removed by anyone, but can be replaced by a new asset.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - `index` must be in range of the length of the pending asset array.Emits an {AssetAccepted} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -72,13 +72,13 @@ Used to add a asset entry.
 
 *The ID of the asset is automatically assigned to be the next available asset ID.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | metadataURI | string | Metadata URI of the asset |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -94,7 +94,7 @@ Used to add an asset to a token.
 
 *If the given asset is already added to the token, the execution will be reverted.If the asset ID is invalid, the execution will be reverted.If the token already has the maximum amount of pending assets (128), the execution will be  reverted.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -112,7 +112,7 @@ Used to grant a one-time approval to manage one&#39;s token.
 
 *Gives permission to `to` to transfer `tokenId` token to another account.The approval is cleared when the token is transferred.Only a single account can be approved at a time, so approving the zero address clears previous approvals.Requirements: - The caller must own the token or be an approved operator. - `tokenId` must exist.Emits an {Approval} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -129,7 +129,7 @@ Used to grant permission to the user to manage token&#39;s assets.
 
 *This differs from transfer approvals, as approvals are not cleared when the approved party accepts or  rejects an asset, or sets asset priorities. This approval is cleared on token transfer.Only a single account can be approved at a time, so approving the `0x0` address clears previous approvals.Requirements:  - The caller must own the token or be an approved operator.  - `tokenId` must exist.Emits an {ApprovalForAssets} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -146,13 +146,13 @@ Used to retrieve the number of tokens in ``owner``&#39;s account.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the account being checked |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -168,7 +168,7 @@ Used to destroy the specified token.
 
 *The approval is cleared when the token is burned.Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -185,7 +185,7 @@ Used to retrieve the metadata URI of the collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -201,13 +201,13 @@ Used to retrieve the priorities of the active resoources of a given token.
 
 *Asset priorities are a non-sequential array of uint64 values with an array size equal to active asset  priorites.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the priorities of the active assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -223,13 +223,13 @@ Used to retrieve IDs of the active assets of given token.
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.You can safely get 10k*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the IDs of the active assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -245,13 +245,13 @@ Used to retrieve the account approved to manage given token.
 
 *Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to check for approval |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -267,13 +267,13 @@ Used to retrieve the address of the account approved to manage assets of a given
 
 *Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the approved address |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -289,14 +289,14 @@ Used to fetch the asset metadata of the specified token&#39;s active asset with 
 
 *Assets are stored by reference mapping `_assets[assetId]`.Can be overriden to implement enumerate, fallback or other custom logic.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token from which to retrieve the asset metadata |
 | assetId | uint64 | Asset Id, must be in the active assets array |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -312,14 +312,14 @@ Used to retrieve the asset that will be replaced if a given asset from the token
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to check |
 | newAssetId | uint64 | ID of the pending asset which will be accepted |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -335,13 +335,13 @@ Used to retrieve IDs of the pending assets of given token.
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the IDs of the pending assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -358,7 +358,7 @@ Used to retrieve the specified royalty percentage.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -375,7 +375,7 @@ Used to retrieve the recipient of royalties.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -391,14 +391,14 @@ Used to check if the given address is allowed to manage the tokens of the specif
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the owner of the tokens |
 | operator | address | Address being checked for approval |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -414,14 +414,14 @@ Used to check whether the address has been granted the operator role by a given 
 
 *See {setApprovalForAllForAssets}.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the account that we are checking for whether it has granted the operator role |
 | operator | address | Address of the account that we are checking whether it has the operator role or not |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -437,13 +437,13 @@ Used to check if the address is one of the contributors.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | contributor | address | Address of the contributor whose status we are checking |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -459,7 +459,7 @@ Adds or removes a contributor to the smart contract.
 
 *Can only be called by the owner.Emits ***ContributorUpdate*** event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -477,7 +477,7 @@ Used to retrieve the maximum supply of the collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -494,7 +494,7 @@ Used to retrieve the collection name.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -511,7 +511,7 @@ Returns the address of the current owner.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -527,13 +527,13 @@ Used to retrieve the owner of the given token.
 
 *Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the token for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -549,7 +549,7 @@ Rejects all assets from the pending array of a given token.
 
 *Effecitvely deletes the pending array.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.Emits a {AssetRejected} event with assetId = 0.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -566,7 +566,7 @@ Rejects an asset from the pending array of given token.
 
 *Removes the asset from the token&#39;s pending asset array.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - `index` must be in range of the length of the pending asset array.Emits a {AssetRejected} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -595,14 +595,14 @@ Used to retrieve the information about who shall receive royalties of a sale of 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the royalty info is being retrieved |
 | salePrice | uint256 | Price of the token sale |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -619,7 +619,7 @@ Used to safely transfer a given token token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must exist and be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.  - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -637,7 +637,7 @@ Used to safely transfer a given token token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must exist and be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.  - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -656,7 +656,7 @@ Used to approve or remove `operator` as an operator for the caller.
 
 *Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller.Requirements: - The `operator` cannot be the caller.Emits an {ApprovalForAll} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -673,7 +673,7 @@ Used to add or remove an operator of assets for the caller.
 
 *Operators can call {acceptAsset}, {rejectAsset}, {rejectAllAssets} or {setPriority} for any token  owned by the caller.Requirements:  - The `operator` cannot be the caller.Emits an {ApprovalForAllForAssets} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -690,7 +690,7 @@ Sets a new priority array for a given token.
 
 *The priority array is a non-sequential list of `uint64`s, where the lowest value is considered highest  priority.Value `0` of a priority is a special case equivalent to unitialized.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - The length of `priorities` must be equal the length of the active assets array.Emits a {AssetPrioritySet} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -707,13 +707,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -730,7 +730,7 @@ Used to retrieve the collection symbol.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -747,7 +747,7 @@ Used to retrieve the total number of assets.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -764,7 +764,7 @@ Used to retrieve the total supply of the tokens in a collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -780,7 +780,7 @@ Transfers a given token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -798,7 +798,7 @@ Transfers ownership of the contract to a new owner.
 
 *Can only be called by the current owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -814,7 +814,7 @@ Used to update recipient of royalties.
 
 *Custom access control has to be implemented to ensure that only the intended actors can update the  beneficiary.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -834,7 +834,7 @@ event Approval(address indexed owner, address indexed approved, uint256 indexed 
 
 *Emitted when `owner` enables `approved` to manage the `tokenId` token.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -852,7 +852,7 @@ event ApprovalForAll(address indexed owner, address indexed operator, bool appro
 
 *Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -870,7 +870,7 @@ Used to notify listeners that owner has granted approval to the user to manage a
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -888,7 +888,7 @@ Used to notify listeners that owner has granted an approval to the user to manag
 
 *Approvals must be cleared on transfer*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -906,7 +906,7 @@ Used to notify listeners that an asset object at `assetId` is accepted by the to
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -924,7 +924,7 @@ Used to notify listeners that an asset object at `assetId` is added to token&#39
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -942,7 +942,7 @@ Used to notify listeners that token&#39;s prioritiy array is reordered.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -958,7 +958,7 @@ Used to notify listeners that an asset object at `assetId` is rejected from toke
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -975,7 +975,7 @@ Used to notify listeners that an asset object is initialized at `assetId`.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -991,7 +991,7 @@ Event that signifies that an address was granted contributor role or that the pe
 
 *This can only be triggered by a current owner, so there is no need to include that information in the event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1008,7 +1008,7 @@ Used to anounce the transfer of ownership.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1025,7 +1025,7 @@ event Transfer(address indexed from, address indexed to, uint256 indexed tokenId
 
 *Emitted when `tokenId` token is transferred from `from` to `to`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

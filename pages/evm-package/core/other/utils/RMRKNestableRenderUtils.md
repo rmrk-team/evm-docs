@@ -20,7 +20,7 @@ Check if the child is owned by the expected parent.
 
 *Reverts if child token is not owned by an NFT.Reverts if child token is not owned by the expected parent.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -39,14 +39,14 @@ Used to retrieve the immediate owner of the given token, and whether it is on th
 
 *If the immediate owner is not an NFT, the function returns false for both `inParentsActiveChildren` and `inParentsPendingChildren`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -66,7 +66,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s child tokens ar
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -75,7 +75,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s child tokens ar
 | childAddress | address | Address of the child token&#39;s colection smart contract |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -91,14 +91,14 @@ Used to retrieve the contract address and ID of the parent token of the specifie
 
 *Reverts if child token is not owned by an NFT.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | childAddress | address | Address of the child token&#39;s collection smart contract |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -115,7 +115,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s pending child t
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -124,7 +124,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s pending child t
 | childAddress | address | Address of the child token&#39;s colection smart contract |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -140,14 +140,14 @@ Used to retrieve the total number of descendants of the given token and whether 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -164,14 +164,14 @@ Used to retrieve whether a token has more than one level of nesting.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -187,14 +187,14 @@ Used to identify if the given token is rejected or abandoned. That is, it&#39;s 
 
 *Returns false if the immediate owner is not an NFT.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -210,7 +210,7 @@ Used to validate whether the specified child token is owned by a given parent to
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -219,7 +219,7 @@ Used to validate whether the specified child token is owned by a given parent to
 | parentId | uint256 | ID of the parent token |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -235,7 +235,7 @@ Used to validate whether the specified child token is owned by a given parent to
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -244,7 +244,7 @@ Used to validate whether the specified child token is owned by a given parent to
 | parentId | uint256 | ID of the parent token |
 | childIds | uint256[] | An array of child token IDs to verify |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

@@ -21,7 +21,7 @@ Used to retrieve the collection name.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Used to retrieve the collection symbol.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

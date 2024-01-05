@@ -21,7 +21,7 @@ Used to retrieve the status of a lockable smart contract.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -37,13 +37,13 @@ Used to check if the address is one of the contributors.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | contributor | address | Address of the contributor whose status we are checking |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -59,7 +59,7 @@ Adds or removes a contributor to the smart contract.
 
 *Can only be called by the owner.Emits ***ContributorUpdate*** event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -77,7 +77,7 @@ Returns the address of the current owner.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -115,7 +115,7 @@ Transfers ownership of the contract to a new owner.
 
 *Can only be called by the current owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -135,7 +135,7 @@ Event that signifies that an address was granted contributor role or that the pe
 
 *This can only be triggered by a current owner, so there is no need to include that information in the event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -163,7 +163,7 @@ Used to anounce the transfer of ownership.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

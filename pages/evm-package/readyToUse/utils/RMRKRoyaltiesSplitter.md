@@ -21,7 +21,7 @@ function MAX_BPS() external view returns (uint256)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -37,7 +37,7 @@ Distributes an ERC20 payment to the beneficiaries.
 
 *The payment is distributed according to the shares specified in the constructor.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -55,7 +55,7 @@ Returns the list of beneficiaries and their shares.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -76,7 +76,7 @@ event ERCPaymentDistributed(address indexed sender, address indexed currency, ui
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -94,7 +94,7 @@ event NativePaymentDistributed(address indexed sender, uint256 amount)
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

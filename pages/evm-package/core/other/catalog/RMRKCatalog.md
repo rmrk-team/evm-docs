@@ -20,14 +20,14 @@ Used to check whether the given address is allowed to equip the desired `Part`.
 
 *Returns true if a collection may equip asset with `partId`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partId | uint64 | The ID of the part that we are checking |
 | targetAddress | address | The address that we are checking for whether the part can be equipped into it or not |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -43,13 +43,13 @@ Used to check if the part is equippable by all addresses.
 
 *Returns true if part is equippable to all.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partId | uint64 | ID of the part that we are checking |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -66,7 +66,7 @@ Used to return the metadata URI of the associated Catalog.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -82,13 +82,13 @@ Used to retrieve a `Part` with id `partId`
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partId | uint64 | ID of the part that we are retrieving |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -104,13 +104,13 @@ Used to retrieve multiple parts at the same time.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partIds | uint64[] | An array of part IDs that we want to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -127,7 +127,7 @@ Used to return the `itemType` of the associated Catalog
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -143,13 +143,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -169,7 +169,7 @@ Event to announce new equippables to the part.
 
 *It is emitted when new addresses are marked as equippable for `partId`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -186,7 +186,7 @@ Event to announce addition of a new part.
 
 *It is emitted when a new part is added.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -206,7 +206,7 @@ Event to announce that a given part can be equipped by any address.
 
 *It is emitted when a given part is marked as equippable by any.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -222,7 +222,7 @@ Event to announce the overriding of equippable addresses of the part.
 
 *It is emitted when the existing list of addresses marked as equippable for `partId` is overwritten by a new one.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

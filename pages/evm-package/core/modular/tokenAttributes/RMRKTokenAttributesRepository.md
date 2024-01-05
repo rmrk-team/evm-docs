@@ -21,7 +21,7 @@ function DOMAIN_SEPARATOR() external view returns (bytes32)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ function SET_ADDRESS_ATTRIBUTE_TYPEHASH() external view returns (bytes32)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -55,7 +55,7 @@ function SET_BOOL_ATTRIBUTE_TYPEHASH() external view returns (bytes32)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -72,7 +72,7 @@ function SET_BYTES_ATTRIBUTE_TYPEHASH() external view returns (bytes32)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -89,7 +89,7 @@ function SET_STRING_ATTRIBUTE_TYPEHASH() external view returns (bytes32)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -106,7 +106,7 @@ function SET_UINT_ATTRIBUTE_TYPEHASH() external view returns (bytes32)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -122,7 +122,7 @@ Used to retrieve the address type token attributes.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -130,7 +130,7 @@ Used to retrieve the address type token attributes.
 | tokenId | uint256 | The token ID |
 | key | string | The key of the attribute |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -146,7 +146,7 @@ Used to get multiple address parameter values for a token.
 
 *The `AddressAttribute` struct contains the following fields:  [     string key,     address value  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -154,7 +154,7 @@ Used to get multiple address parameter values for a token.
 | tokenId | uint256 | ID of the token for which the attributes are being retrieved |
 | addressKeys | string[] | An array of address keys to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -170,7 +170,7 @@ Used to retrieve multiple token attributes of any type at once.
 
 *The `StringAttribute`, `UintAttribute`, `BoolAttribute`, `AddressAttribute` and `BytesAttribute` structs consists  to the following fields (where `value` is of the appropriate type):  [      key,      value,  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -182,7 +182,7 @@ Used to retrieve multiple token attributes of any type at once.
 | addressKeys | string[] | An array of address type attribute keys to retrieve |
 | bytesKeys | string[] | An array of bytes type attribute keys to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -202,7 +202,7 @@ Used to retrieve the bool type token attributes.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -210,7 +210,7 @@ Used to retrieve the bool type token attributes.
 | tokenId | uint256 | The token ID |
 | key | string | The key of the attribute |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -226,7 +226,7 @@ Used to get multiple bool parameter values for a token.
 
 *The `BoolAttribute` struct contains the following fields:  [     string key,     bool value  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -234,7 +234,7 @@ Used to get multiple bool parameter values for a token.
 | tokenId | uint256 | ID of the token for which the attributes are being retrieved |
 | boolKeys | string[] | An array of bool keys to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -250,7 +250,7 @@ Used to retrieve the bytes type token attributes.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -258,7 +258,7 @@ Used to retrieve the bytes type token attributes.
 | tokenId | uint256 | The token ID |
 | key | string | The key of the attribute |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -274,7 +274,7 @@ Used to get multiple bytes parameter values for a token.
 
 *The `BytesAttribute` struct contains the following fields:  [     string key,     bytes value  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -282,7 +282,7 @@ Used to get multiple bytes parameter values for a token.
 | tokenId | uint256 | ID of the token for which the attributes are being retrieved |
 | bytesKeys | string[] | An array of bytes keys to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -298,7 +298,7 @@ Used to retrieve the string type token attributes.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -306,7 +306,7 @@ Used to retrieve the string type token attributes.
 | tokenId | uint256 | The token ID |
 | key | string | The key of the attribute |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -322,7 +322,7 @@ Used to get multiple sting parameter values for a token.
 
 *The `StringAttribute` struct contains the following fields:  [     string key,     string value  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -330,7 +330,7 @@ Used to get multiple sting parameter values for a token.
 | tokenId | uint256 | ID of the token for which the attributes are being retrieved |
 | stringKeys | string[] | An array of string keys to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -346,7 +346,7 @@ Used to retrieve the uint type token attributes.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -354,7 +354,7 @@ Used to retrieve the uint type token attributes.
 | tokenId | uint256 | The token ID |
 | key | string | The key of the attribute |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -370,7 +370,7 @@ Used to get multiple uint parameter values for a token.
 
 *The `UintAttribute` struct contains the following fields:  [     string key,     uint value  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -378,7 +378,7 @@ Used to get multiple uint parameter values for a token.
 | tokenId | uint256 | ID of the token for which the attributes are being retrieved |
 | uintKeys | string[] | An array of uint keys to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -394,14 +394,14 @@ Used to check if the specified address is listed as a collaborator of the given 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collaborator | address | Address to be checked. |
 | collection | address | Address of the collection. |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -417,7 +417,7 @@ Used to check if the specified address is listed as a specific address of the gi
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -425,7 +425,7 @@ Used to check if the specified address is listed as a specific address of the gi
 | collection | address | Address of the collection. |
 | key | string | The key of the attribute |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -441,7 +441,7 @@ Used to manage the access control settings for a specific parameter.
 
 *Only the `issuer` of the collection can call this function.The possible `accessType` values are:  [      Issuer,      Collaborator,      IssuerOrCollaborator,      TokenOwner,      SpecificAddress,  ]Emits an {AccessControlUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -460,7 +460,7 @@ Used to manage the collaborators of a collection.
 
 *The `collaboratorAddresses` and `collaboratorAddressAccess` arrays must be of the same length.Emits a {CollaboratorUpdate} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -478,7 +478,7 @@ Used to retrieve the message to be signed for submitting a presigned address att
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -488,7 +488,7 @@ Used to retrieve the message to be signed for submitting a presigned address att
 | value | address | The attribute value |
 | deadline | uint256 | The deadline timestamp for the presigned transaction after which the message is invalid |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -504,7 +504,7 @@ Used to retrieve the message to be signed for submitting a presigned bool attrib
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -514,7 +514,7 @@ Used to retrieve the message to be signed for submitting a presigned bool attrib
 | value | bool | The attribute value |
 | deadline | uint256 | The deadline timestamp for the presigned transaction after which the message is invalid |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -530,7 +530,7 @@ Used to retrieve the message to be signed for submitting a presigned bytes attri
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -540,7 +540,7 @@ Used to retrieve the message to be signed for submitting a presigned bytes attri
 | value | bytes | The attribute value |
 | deadline | uint256 | The deadline timestamp for the presigned transaction after which the message is invalid |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -556,7 +556,7 @@ Used to retrieve the message to be signed for submitting a presigned string attr
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -566,7 +566,7 @@ Used to retrieve the message to be signed for submitting a presigned string attr
 | value | string | The attribute value |
 | deadline | uint256 | The deadline timestamp for the presigned transaction after which the message is invalid |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -582,7 +582,7 @@ Used to retrieve the message to be signed for submitting a presigned uint attrib
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -592,7 +592,7 @@ Used to retrieve the message to be signed for submitting a presigned uint attrib
 | value | uint256 | The attribute value |
 | deadline | uint256 | The deadline timestamp for the presigned transaction after which the message is invalid |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -608,7 +608,7 @@ Used to set the address attribute on behalf of an authorized account.
 
 *Emits a {AddressAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -632,7 +632,7 @@ Used to set the bool attribute on behalf of an authorized account.
 
 *Emits a {BoolAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -656,7 +656,7 @@ Used to set the bytes attribute on behalf of an authorized account.
 
 *Emits a {BytesAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -680,7 +680,7 @@ Used to set the string attribute on behalf of an authorized account.
 
 *Emits a {StringAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -704,7 +704,7 @@ Used to set the uint attribute on behalf of an authorized account.
 
 *Emits a {UintAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -728,7 +728,7 @@ Used to register a collection to use the RMRK token attributes repository.
 
 *If the collection does not implement the Ownable interface, the `useOwnable` value must be set to `false`.Emits an {AccessControlRegistration} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -746,7 +746,7 @@ Used to set an address attribute.
 
 *Emits a {AddressAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -765,7 +765,7 @@ function setAddressAttributes(address collection, uint256 tokenId, IERC7508.Addr
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -783,7 +783,7 @@ function setAttributes(address collection, uint256 tokenId, IERC7508.StringAttri
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -805,7 +805,7 @@ Used to set a boolean attribute.
 
 *Emits a {BoolAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -824,7 +824,7 @@ function setBoolAttributes(address collection, uint256 tokenId, IERC7508.BoolAtt
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -842,7 +842,7 @@ Used to set an bytes attribute.
 
 *Emits a {BytesAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -861,7 +861,7 @@ function setBytesAttributes(address collection, uint256 tokenId, IERC7508.BytesA
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -879,7 +879,7 @@ Used to set a string attribute.
 
 *Emits a {StringAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -898,7 +898,7 @@ function setStringAttributes(address collection, uint256 tokenId, IERC7508.Strin
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -916,7 +916,7 @@ Used to set a number attribute.
 
 *Emits a {UintAttributeUpdated} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -935,7 +935,7 @@ function setUintAttributes(address collection, uint256 tokenId, IERC7508.UintAtt
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -953,13 +953,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -979,7 +979,7 @@ Used to notify listeners that a new collection has been registered to use the re
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -998,7 +998,7 @@ Used to notify listeners that the access control settings for a specific paramet
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1017,7 +1017,7 @@ Used to notify listeners that an address attribute has been updated.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1036,7 +1036,7 @@ Used to notify listeners that a boolean attribute has been updated.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1055,7 +1055,7 @@ Used to notify listeners that a bytes attribute has been updated.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1074,7 +1074,7 @@ Used to notify listeners that a new collaborator has been added or removed.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1092,7 +1092,7 @@ Used to notify listeners that a string attribute has been updated.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1111,7 +1111,7 @@ Used to notify listeners that an uint attribute has been updated.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

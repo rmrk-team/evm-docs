@@ -20,14 +20,14 @@ Used to retrieve the ID of the specified token&#39;s asset with the highest prio
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token for which to retrieve the ID of the asset with the highest priority |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -44,7 +44,7 @@ Used to retrieve the metadata URI of specified assets in the specified token.
 
 *Requirements:  - `assetIds` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -52,7 +52,7 @@ Used to retrieve the metadata URI of specified assets in the specified token.
 | tokenId | uint256 | ID of the token to retrieve the specified assets for |
 | assetIds | uint64[] | [] An array of asset IDs for which to retrieve the metadata URIs |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -68,14 +68,14 @@ Used to get the active assets of the given token.
 
 *The full `ExtendedActiveAsset` looks like this:  [      id,      priority,      metadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token to retrieve the active assets for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -91,14 +91,14 @@ Used to get the pending assets of the given token.
 
 *The full `PendingAsset` looks like this:  [      id,      acceptRejectIndex,      replacesAssetWithId,      metadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token to retrieve the pending assets for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -114,14 +114,14 @@ Used to retrieve ID, priority value and metadata URI of the asset with the highe
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Collection smart contract of the token for which to retireve the top asset |
 | tokenId | uint256 | ID of the token for which to retrieve the top asset |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -139,14 +139,14 @@ Used to retrieve the metadata URI of the specified token&#39;s asset with the hi
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token for which to retrieve the metadata URI of the asset with the highest priority |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -162,14 +162,14 @@ Used to retrieve the metadata URI of the specified token&#39;s asset with the hi
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the tokens |
 | tokenIds | uint256[] | IDs of the tokens for which to retrieve the metadata URIs |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

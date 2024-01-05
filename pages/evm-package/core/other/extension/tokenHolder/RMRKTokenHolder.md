@@ -20,7 +20,7 @@ Used to retrieve the given token&#39;s balance of given token
 
 *When retrieving the balance of an ERC-20 token, the `heldTokenId` parameter MUST be ignored.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -29,7 +29,7 @@ Used to retrieve the given token&#39;s balance of given token
 | tokenId | uint256 | The ID of the token being checked for balance |
 | heldTokenId | uint256 | The ID of the held token of which the balance is being retrieved |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -45,7 +45,7 @@ function onERC1155Received(address, address, uint256, uint256, bytes) external p
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -55,7 +55,7 @@ function onERC1155Received(address, address, uint256, uint256, bytes) external p
 | _3 | uint256 | undefined |
 | _4 | bytes | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -71,7 +71,7 @@ function onERC721Received(address, address, uint256, bytes) external pure return
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -80,7 +80,7 @@ function onERC721Received(address, address, uint256, bytes) external pure return
 | _2 | uint256 | undefined |
 | _3 | bytes | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -96,13 +96,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -118,7 +118,7 @@ Transfer held tokens from a specific token.
 
 *The balance MUST be transferred from this smart contract.Implementers should validate that the `msg.sender` is either the token owner or approved to manage it before  calling this.If the token type is `ERC-20`, the `heldTokenId` MUST be ignored.IF the token type is `ERC-721`, the `amount` MUST be ignored.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -140,7 +140,7 @@ Transfer tokens to a specific holder token.
 
 *The token smart contract must have approval for this contract to transfer the tokens.The balance MUST be transferred from the `msg.sender`.If the token type is `ERC-20`, the `heldTokenId` MUST be ignored.If the token type is `ERC-721`, the `amount` MUST be ignored.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -165,7 +165,7 @@ Used to notify listeners that the token received held tokens.
 
 *If the token type is `ERC-20`, the `heldTokenId` MUST equal `0`If the token type is `ERC-721`, the `amount` MUST equal `1`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -186,7 +186,7 @@ Used to notify the listeners that the ERC-20 tokens have been transferred.
 
 *If the token type is `ERC-20`, the `heldTokenId` MUST equal `0`If the token type is `ERC-721`, the `amount` MUST equal `1`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

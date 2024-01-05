@@ -21,7 +21,7 @@ function DOMAIN_SEPARATOR() external view returns (bytes32)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -37,7 +37,7 @@ Used to emote or undo an emote on multiple tokens.
 
 *Does nothing if attempting to set a pre-existent state.MUST emit the `Emoted` event is the state of the emote is changed.MUST revert if the lengths of the `collections`, `tokenIds`, `emojis` and `states` arrays are not equal.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -56,7 +56,7 @@ Used to get the number of emotes for a specific emoji on a set of tokens.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -64,7 +64,7 @@ Used to get the number of emotes for a specific emoji on a set of tokens.
 | tokenIds | uint256[] | An array of IDs of the tokens to check for emoji count |
 | emojis | string[] | An array of unicode identifiers of the emojis |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -80,7 +80,7 @@ Used to get multiple messages to be signed by the `emoter` in order for the reac
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -90,7 +90,7 @@ Used to get multiple messages to be signed by the `emoter` in order for the reac
 | states | bool[] | An array of boolean values signifying whether to emote (`true`) or undo (`false`) emote |
 | deadlines | uint256[] | An array of UNIX timestamps of the deadlines for the signatures to be submitted |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -106,7 +106,7 @@ Used to bulk emote or undo an emote on someone else&#39;s behalf.
 
 *Does nothing if attempting to set a pre-existent state.MUST emit the `Emoted` event is the state of the emote is changed.MUST revert if the lengths of the `collections`, `tokenIds`, `emojis` and `states` arrays are not equal.MUST revert if the `deadline` has passed.MUST revert if the recovered address is the zero address.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -130,7 +130,7 @@ Used to emote or undo an emote on a token.
 
 *Does nothing if attempting to set a pre-existent state.MUST emit the `Emoted` event is the state of the emote is changed.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -149,7 +149,7 @@ Used to get the number of emotes for a specific emoji on a token.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -157,7 +157,7 @@ Used to get the number of emotes for a specific emoji on a token.
 | tokenId | uint256 | ID of the token to check for emoji count |
 | emoji | string | Unicode identifier of the emoji |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -173,7 +173,7 @@ Used to get the information on whether the specified address has used a specific
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -182,7 +182,7 @@ Used to get the information on whether the specified address has used a specific
 | tokenId | uint256 | ID of the token being checked for emoji reaction |
 | emoji | string | The ASCII emoji code being checked for reaction |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -198,7 +198,7 @@ Used to get the information on whether the specified addresses have used specifi
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -207,7 +207,7 @@ Used to get the information on whether the specified addresses have used specifi
 | tokenIds | uint256[] | An array of IDs of the tokens being checked for emoji reactions |
 | emojis | string[] | An array of the ASCII emoji codes being checked for reactions |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -223,7 +223,7 @@ Used to get the message to be signed by the `emoter` in order for the reaction t
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -233,7 +233,7 @@ Used to get the message to be signed by the `emoter` in order for the reaction t
 | state | bool | Boolean value signifying whether to emote (`true`) or undo (`false`) emote |
 | deadline | uint256 | UNIX timestamp of the deadline for the signature to be submitted |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -249,7 +249,7 @@ Used to emote or undo an emote on someone else&#39;s behalf.
 
 *Does nothing if attempting to set a pre-existent state.MUST emit the `Emoted` event is the state of the emote is changed.MUST revert if the lengths of the `collections`, `tokenIds`, `emojis` and `states` arrays are not equal.MUST revert if the `deadline` has passed.MUST revert if the recovered address is the zero address.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -273,13 +273,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -299,7 +299,7 @@ Used to notify listeners that the token with the specified ID has been emoted to
 
 *The event MUST only be emitted if the state of the emote is changed.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

@@ -20,7 +20,7 @@ Used to add multiple `equippableAddresses` to a single catalog entry.
 
 *Can only be called on `Part`s of `Slot` type.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -37,7 +37,7 @@ function addPart(IRMRKCatalog.IntakeStruct intakeStruct) external nonpayable
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -53,7 +53,7 @@ function addPartList(IRMRKCatalog.IntakeStruct[] intakeStructs) external nonpaya
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -69,14 +69,14 @@ Used to check whether the given address is allowed to equip the desired `Part`.
 
 *Returns true if a collection may equip asset with `partId`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partId | uint64 | The ID of the part that we are checking |
 | targetAddress | address | The address that we are checking for whether the part can be equipped into it or not |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -92,13 +92,13 @@ Used to check if the part is equippable by all addresses.
 
 *Returns true if part is equippable to all.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partId | uint64 | ID of the part that we are checking |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -115,7 +115,7 @@ Used to retrieve the status of a lockable smart contract.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -132,7 +132,7 @@ Used to return the metadata URI of the associated Catalog.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -148,13 +148,13 @@ Used to retrieve a `Part` with id `partId`
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partId | uint64 | ID of the part that we are retrieving |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -170,13 +170,13 @@ Used to retrieve multiple parts at the same time.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | partIds | uint64[] | An array of part IDs that we want to retrieve |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -193,7 +193,7 @@ Used to return the `itemType` of the associated Catalog
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -209,13 +209,13 @@ Used to check if the address is one of the contributors.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | contributor | address | Address of the contributor whose status we are checking |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -231,7 +231,7 @@ Adds or removes a contributor to the smart contract.
 
 *Can only be called by the owner.Emits ***ContributorUpdate*** event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -249,7 +249,7 @@ Returns the address of the current owner.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -276,7 +276,7 @@ Used to remove all of the `equippableAddresses` for a `Part` associated with the
 
 *Can only be called on `Part`s of `Slot` type.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -292,7 +292,7 @@ Function used to set the new list of `equippableAddresses`.
 
 *Overwrites existing `equippableAddresses`.Can only be called on `Part`s of `Slot` type.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -309,7 +309,7 @@ Sets the isEquippableToAll flag to true, meaning that any collection may be equi
 
 *Can only be called on `Part`s of `Slot` type.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -336,13 +336,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -358,7 +358,7 @@ Transfers ownership of the contract to a new owner.
 
 *Can only be called by the current owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -378,7 +378,7 @@ Event to announce new equippables to the part.
 
 *It is emitted when new addresses are marked as equippable for `partId`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -395,7 +395,7 @@ Event to announce addition of a new part.
 
 *It is emitted when a new part is added.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -415,7 +415,7 @@ Event that signifies that an address was granted contributor role or that the pe
 
 *This can only be triggered by a current owner, so there is no need to include that information in the event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -443,7 +443,7 @@ Used to anounce the transfer of ownership.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -460,7 +460,7 @@ Event to announce that a given part can be equipped by any address.
 
 *It is emitted when a given part is marked as equippable by any.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -476,7 +476,7 @@ Event to announce the overriding of equippable addresses of the part.
 
 *It is emitted when the existing list of addresses marked as equippable for `partId` is overwritten by a new one.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

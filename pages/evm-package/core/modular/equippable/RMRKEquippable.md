@@ -21,7 +21,7 @@ Interface identifier of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Version of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -54,7 +54,7 @@ Accepts a asset at from the pending array of given token.
 
 *Migrates the asset from the token&#39;s pending asset array to the token&#39;s active asset array.Active assets cannot be removed by anyone, but can be replaced by a new asset.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - `index` must be in range of the length of the pending asset array.Emits an {AssetAccepted} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -72,7 +72,7 @@ Used to accept a pending child token for a given parent token.
 
 *This moves the child token from parent token&#39;s pending child tokens array into the active child tokens  array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -91,7 +91,7 @@ Used to add a child token to a given parent token.
 
 *This adds the child token into the given parent token&#39;s pending child tokens array.Requirements:  - `directOwnerOf` on the child contract must resolve to the called contract.  - the pending array of the parent contract must not be full.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -109,7 +109,7 @@ Used to grant a one-time approval to manage one&#39;s token.
 
 *Gives permission to `to` to transfer `tokenId` token to another account.The approval is cleared when the token is transferred.Only a single account can be approved at a time, so approving the zero address clears previous approvals.Requirements: - The caller must own the token or be an approved operator. - `tokenId` must exist.Emits an {Approval} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -126,7 +126,7 @@ Used to grant approvals for specific tokens to a specified address.
 
 *This can only be called by the owner of the token or by an account that has been granted permission to  manage all of the owner&#39;s assets.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -143,13 +143,13 @@ Used to retrieve the number of tokens in `owner`&#39;s account.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the account being checked |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -165,7 +165,7 @@ Used to burn a given token.
 
 *In case the token has any child tokens, the execution will be reverted.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -181,14 +181,14 @@ Used to burn a given token.
 
 *When a token is burned, all of its child tokens are recursively burned as well.When specifying the maximum recursive burns, the execution will be reverted if there are more children to be  burned.Setting the `maxRecursiveBurn` value to 0 will only attempt to burn the specified token and revert if there  are any child tokens present.The approvals are cleared when the token is burned.Requirements:  - `tokenId` must exist.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to burn |
 | maxChildrenBurns | uint256 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -204,7 +204,7 @@ Used to verify whether a token can be equipped into a given parent&#39;s slot.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -213,7 +213,7 @@ Used to verify whether a token can be equipped into a given parent&#39;s slot.
 | assetId | uint64 | ID of the asset associated with the token we want to equip |
 | slotId | uint64 | ID of the slot that we want to equip the token into |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -229,14 +229,14 @@ Used to retrieve a specific active child token for a given parent token.
 
 *Returns a single Child struct locating at `index` of parent token&#39;s active child tokens array.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which the child is being retrieved |
 | index | uint256 | Index of the child token in the parent token&#39;s active child tokens array |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -252,13 +252,13 @@ Used to retrieve the active child tokens of a given parent token.
 
 *Returns array of Child structs existing for parent token.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which to retrieve the active child tokens |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -274,13 +274,13 @@ Used to retrieve the immediate owner of the given token.
 
 *If the immediate owner is another token, the address returned, should be the one of the parent token&#39;s  collection smart contract.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the RMRK owner is being retrieved |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -298,7 +298,7 @@ function equip(IERC6220.IntakeEquip data) external nonpayable
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -314,13 +314,13 @@ Used to retrieve the priorities of the active resoources of a given token.
 
 *Asset priorities are a non-sequential array of uint64 values with an array size equal to active asset  priorites.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the priorities of the active assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -336,13 +336,13 @@ Used to retrieve IDs of the active assets of given token.
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.You can safely get 10k*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the IDs of the active assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -358,13 +358,13 @@ Used to retrieve the account approved to manage given token.
 
 *Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to check for approval |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -380,13 +380,13 @@ Used to retrieve the address of the account approved to manage assets of a given
 
 *Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the approved address |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -402,14 +402,14 @@ Used to get the asset and equippable data associated with given `assetId`.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retrieve the asset |
 | assetId | uint64 | ID of the asset of which we are retrieving |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -428,14 +428,14 @@ Used to fetch the asset metadata of the specified token&#39;s active asset with 
 
 *Assets are stored by reference mapping `_assets[assetId]`.Can be overriden to implement enumerate, fallback or other custom logic.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token from which to retrieve the asset metadata |
 | assetId | uint64 | Asset Id, must be in the active assets array |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -451,14 +451,14 @@ Used to retrieve the asset that will be replaced if a given asset from the token
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to check |
 | newAssetId | uint64 | ID of the pending asset which will be accepted |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -474,7 +474,7 @@ Used to get the Equipment object equipped into the specified slot of the desired
 
 *The `Equipment` struct consists of the following data:  [      assetId,      childAssetId,      childId,      childEquippableAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -482,7 +482,7 @@ Used to get the Equipment object equipped into the specified slot of the desired
 | targetCatalogAddress | address | Address of the `Catalog` associated with the `Slot` part of the token |
 | slotPartId | uint64 | ID of the `Slot` part that we are checking for equipped objects |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -498,13 +498,13 @@ Used to retrieve IDs of the pending assets of given token.
 
 *Asset data is stored by reference, in order to access the data corresponding to the ID, call  `getAssetMetadata(tokenId, assetId)`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the IDs of the pending assets |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -520,14 +520,14 @@ Used to check if the given address is allowed to manage the tokens of the specif
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the owner of the tokens |
 | operator | address | Address being checked for approval |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -543,14 +543,14 @@ Used to check whether the address has been granted the operator role by a given 
 
 *See {setApprovalForAllForAssets}.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the account that we are checking for whether it has granted the operator role |
 | operator | address | Address of the account that we are checking whether it has the operator role or not |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -566,7 +566,7 @@ Used to check whether the token has a given child equipped.
 
 *This is used to prevent from transferring a child that is equipped.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -574,7 +574,7 @@ Used to check whether the token has a given child equipped.
 | childAddress | address | Address of the child token&#39;s smart contract |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -590,7 +590,7 @@ Used to transfer the token into another token.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -608,15 +608,15 @@ function ownerOf(uint256 tokenId) external view returns (address owner_)
 
 Used to retrieve the *root* owner of a given token.
 
-*The *root* owner of the token is an externally owned account (EOA). If the given token is child of another  NFT, this will return an EOA address. Otherwise, if the token is owned by an EOA, this EOA wil be returned.*
+*The *root* owner of the token is an externally owned account (EOA). If the given token is child of another  NFT, this will return an EOA address. Otherwise, if the token is owned by an EOA, this EOA will be returned.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the *root* owner has been retrieved |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -632,14 +632,14 @@ Used to retrieve a specific pending child token from a given parent token.
 
 *Returns a single Child struct locating at `index` of parent token&#39;s active child tokens array.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which the pending child token is being retrieved |
 | index | uint256 | Index of the child token in the parent token&#39;s pending child tokens array |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -655,13 +655,13 @@ Used to retrieve the pending child tokens of a given parent token.
 
 *Returns array of pending Child structs existing for given parent.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which to retrieve the pending child tokens |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -677,7 +677,7 @@ Rejects all assets from the pending array of a given token.
 
 *Effecitvely deletes the pending array.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.Emits a {AssetRejected} event with assetId = 0.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -694,7 +694,7 @@ Used to reject all pending children of a given parent token.
 
 *Removes the children from the pending array mapping.This does not update the ownership storage data on children. If necessary, ownership can be reclaimed by the  rootOwner of the previous parent.Requirements: Requirements: - `parentId` must exist*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -711,7 +711,7 @@ Rejects a asset from the pending array of given token.
 
 *Removes the asset from the token&#39;s pending asset array.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - `index` must be in range of the length of the pending asset array.Emits a {AssetRejected} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -729,7 +729,7 @@ Used to safely transfer a given token token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must exist and be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.  - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -747,7 +747,7 @@ Used to safely transfer a given token token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must exist and be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.  - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -766,7 +766,7 @@ Used to approve or remove `operator` as an operator for the caller.
 
 *Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller.Requirements: - The `operator` cannot be the caller.Emits an {ApprovalForAll} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -783,7 +783,7 @@ Used to add or remove an operator of assets for the caller.
 
 *Operators can call {acceptAsset}, {rejectAsset}, {rejectAllAssets} or {setPriority} for any token  owned by the caller.Requirements:  - The `operator` cannot be the caller.Emits an {ApprovalForAllForAssets} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -800,7 +800,7 @@ Sets a new priority array for a given token.
 
 *The priority array is a non-sequential list of `uint64`s, where the lowest value is considered highest  priority.Value `0` of a priority is a special case equivalent to unitialized.Requirements:  - The caller must own the token or be approved to manage the token&#39;s assets  - `tokenId` must exist.  - The length of `priorities` must be equal the length of the active assets array.Emits a {AssetPrioritySet} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -817,13 +817,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -839,7 +839,7 @@ Used to transfer a child token from a given parent token.
 
 *When transferring a child token, the owner of the token is set to `to`, or is not updated in the event of  `to` being the `0x0` address.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -862,7 +862,7 @@ Transfers a given token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -880,7 +880,7 @@ Used to unequip child from parent token.
 
 *This can only be called by the owner of the token or by an account that has been granted permission to  manage the given token by the current owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -902,7 +902,7 @@ Used to notify listeners that all pending child tokens of a given token have bee
 
 *Emitted when a token removes all a child tokens from its pending array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -918,7 +918,7 @@ event Approval(address indexed owner, address indexed approved, uint256 indexed 
 
 *Emitted when `owner` enables `approved` to manage the `tokenId` token.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -936,7 +936,7 @@ event ApprovalForAll(address indexed owner, address indexed operator, bool appro
 
 *Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -954,7 +954,7 @@ Used to notify listeners that owner has granted approval to the user to manage a
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -972,7 +972,7 @@ Used to notify listeners that owner has granted an approval to the user to manag
 
 *Approvals must be cleared on transfer*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -990,7 +990,7 @@ Used to notify listeners that an asset object at `assetId` is accepted by the to
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1008,7 +1008,7 @@ Used to notify listeners that an asset object at `assetId` is added to token&#39
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1026,7 +1026,7 @@ Used to notify listeners that token&#39;s prioritiy array is reordered.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1042,7 +1042,7 @@ Used to notify listeners that an asset object at `assetId` is rejected from toke
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1059,7 +1059,7 @@ Used to notify listeners that an asset object is initialized at `assetId`.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1075,7 +1075,7 @@ Used to notify listeners that a new child token was accepted by the parent token
 
 *Emitted when a parent token accepts a token from its pending array, migrating it to the active array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1094,7 +1094,7 @@ Used to notify listeners that a child&#39;s asset has been equipped into one of 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1115,7 +1115,7 @@ Used to notify listeners that a child&#39;s asset has been unequipped from one o
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1136,7 +1136,7 @@ Used to notify listeners that a new token has been added to a given token&#39;s 
 
 *Emitted when a child NFT is added to a token&#39;s pending array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1155,7 +1155,7 @@ Used to notify listeners a child token has been transferred from parent token.
 
 *Emitted when a token transfers a child from itself, transferring ownership to the root owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1176,7 +1176,7 @@ Used to notify listeners that the token is being transferred.
 
 *Emitted when `tokenId` token is transferred from `from` to `to`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1196,7 +1196,7 @@ event Transfer(address indexed from, address indexed to, uint256 indexed tokenId
 
 *Emitted when `tokenId` token is transferred from `from` to `to`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1214,7 +1214,7 @@ Used to notify listeners that the assets belonging to a `equippableGroupId` have
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1445,7 +1445,7 @@ Attempting to burn a total number of recursive children higher than maximum set
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

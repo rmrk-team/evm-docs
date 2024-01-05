@@ -21,7 +21,7 @@ Used to retrieve the metadata URI of the collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Used to retrieve the specified royalty percentage.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -55,7 +55,7 @@ Used to retrieve the recipient of royalties.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -71,13 +71,13 @@ Used to check if the address is one of the contributors.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | contributor | address | Address of the contributor whose status we are checking |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -93,7 +93,7 @@ Adds or removes a contributor to the smart contract.
 
 *Can only be called by the owner.Emits ***ContributorUpdate*** event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -111,7 +111,7 @@ Used to retrieve the maximum supply of the collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -128,7 +128,7 @@ Used to retrieve the collection name.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -145,7 +145,7 @@ Returns the address of the current owner.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -172,14 +172,14 @@ Used to retrieve the information about who shall receive royalties of a sale of 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the royalty info is being retrieved |
 | salePrice | uint256 | Price of the token sale |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -197,7 +197,7 @@ Used to retrieve the collection symbol.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -214,7 +214,7 @@ Used to retrieve the total number of assets.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -231,7 +231,7 @@ Used to retrieve the total supply of the tokens in a collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -247,7 +247,7 @@ Transfers ownership of the contract to a new owner.
 
 *Can only be called by the current owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -263,7 +263,7 @@ Used to update recipient of royalties.
 
 *Custom access control has to be implemented to ensure that only the intended actors can update the  beneficiary.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -283,7 +283,7 @@ Event that signifies that an address was granted contributor role or that the pe
 
 *This can only be triggered by a current owner, so there is no need to include that information in the event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -300,7 +300,7 @@ Used to anounce the transfer of ownership.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

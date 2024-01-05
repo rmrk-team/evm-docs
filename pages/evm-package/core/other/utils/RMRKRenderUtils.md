@@ -20,14 +20,14 @@ Used to get extended information about a specified token.
 
 *The full `ExtendedNft` struct looks like this:  [      tokenMetadataUri,      directOwner,      rootOwner,      activeAssetCount,      pendingAssetCount      priorities,      maxSupply,      totalSupply,      issuer,      name,      symbol,      activeChildrenNumber,      pendingChildrenNumber,      isSoulbound,      hasMultiAssetInterface,      hasNestingInterface,      hasEquippableInterface  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retireve the `ExtendedNft` struct |
 | targetCollection | address | Address of the collection to which the specified token belongs to |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

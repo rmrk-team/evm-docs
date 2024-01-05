@@ -20,7 +20,7 @@ Check if the child is owned by the expected parent.
 
 *Reverts if child token is not owned by an NFT.Reverts if child token is not owned by the expected parent.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -39,7 +39,7 @@ Used to compose the given equippables.
 
 *The full `FixedPart` struct looks like this:  [      partId,      z,      metadataURI  ]The full `EquippedSlotPart` struct looks like this:  [      partId,      childAssetId,      z,      childAddress,      childId,      childAssetMetadata,      partMetadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -47,7 +47,7 @@ Used to compose the given equippables.
 | tokenId | uint256 | ID of the token to compose the equipped items in the asset for |
 | assetId | uint64 | ID of the asset being queried for equipped parts |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -67,14 +67,14 @@ Used to retrieve the immediate owner of the given token, and whether it is on th
 
 *If the immediate owner is not an NFT, the function returns false for both `inParentsActiveChildren` and `inParentsPendingChildren`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -94,7 +94,7 @@ Used to get information about the current children equipped into a specific pare
 
 *The full `IERC6220.Equipment` struct looks like this:  [       assetId       childAssetId       childId       childEquippableAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -102,7 +102,7 @@ Used to get information about the current children equipped into a specific pare
 | parentId | uint256 | ID of the parent token |
 | parentAssetId | uint64 | ID of the target parent asset to use to equip the child |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -118,7 +118,7 @@ Used to get the child&#39;s assets and slot parts pairs, identifying parts the s
 
 *Reverts if child token is not owned by an NFT.The full `EquippableData` struct looks like this:  [      slotPartId,      childAssetId,      parentAssetId,      priority,      parentCatalogAddress,      isEquipped,      partMetadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -126,7 +126,7 @@ Used to get the child&#39;s assets and slot parts pairs, identifying parts the s
 | childId | uint256 | ID of the child token whose assets will be matched against parent&#39;s slot parts |
 | onlyEquipped | bool | Boolean value signifying whether to only return the assets that are currently equipped (`true`) or to include the non-equipped ones as well (`false`) |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -143,14 +143,14 @@ Used to retrieve the ID of the specified token&#39;s asset with the highest prio
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token for which to retrieve the ID of the asset with the highest priority |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -167,7 +167,7 @@ Used to retrieve the metadata URI of specified assets in the specified token.
 
 *Requirements:  - `assetIds` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -175,7 +175,7 @@ Used to retrieve the metadata URI of specified assets in the specified token.
 | tokenId | uint256 | ID of the token to retrieve the specified assets for |
 | assetIds | uint64[] | [] An array of asset IDs for which to retrieve the metadata URIs |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -191,7 +191,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s child tokens ar
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -200,7 +200,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s child tokens ar
 | childAddress | address | Address of the child token&#39;s colection smart contract |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -216,14 +216,14 @@ function getChildrenWithTopMetadata(address parentAddress, uint256 parentId) ext
 
 *The full `ChildWithTopAssetMetadata` struct looks like this:  [      contractAddress,      tokenId,      metadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentAddress | address | Address of the collection smart contract of the parent token |
 | parentId | uint256 | ID of the parent token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -239,7 +239,7 @@ Used to get the child&#39;s assets and slot parts pairs, identifying parts the s
 
 *Reverts if child token is not owned by an NFT.The full `EquippableData` struct looks like this:  [      slotPartId,      childAssetId,      parentAssetId,      priority,      parentCatalogAddress,      isEquipped,      partMetadata,      childAssetMetadata,      parentAssetMetadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -247,7 +247,7 @@ Used to get the child&#39;s assets and slot parts pairs, identifying parts the s
 | childId | uint256 | ID of the child token whose assets will be matched against parent&#39;s slot parts |
 | parentAssetId | uint64 | ID of the target parent asset to use to equip the child |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -264,7 +264,7 @@ Used to get the child&#39;s assets and slot parts pairs, identifying parts the s
 
 *Reverts if child token is not owned by an NFT.The full `EquippableData` struct looks like this:  [      slotPartId,      childAssetId,      parentAssetId,      priority,      parentCatalogAddress,      isEquipped,      partMetadata,      childAssetMetadata,      parentAssetMetadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -272,7 +272,7 @@ Used to get the child&#39;s assets and slot parts pairs, identifying parts the s
 | childId | uint256 | ID of the child token whose assets will be matched against parent&#39;s slot parts |
 | parentAssetId | uint64 | ID of the target parent asset to use to equip the child |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -289,7 +289,7 @@ Used to retrieve the equipped parts of the given token.
 
 *NOTE: Some of the equipped children might be empty.The full `Equipment` struct looks like this:  [      assetId,      childAssetId,      childId,      childEquippableAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -297,7 +297,7 @@ Used to retrieve the equipped parts of the given token.
 | tokenId | uint64 | ID of the token to retrieve the equipped items in the asset for |
 | assetId | uint64 | ID of the asset being queried for equipped parts |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -315,14 +315,14 @@ Used to get the active assets of the given token.
 
 *The full `ExtendedActiveAsset` looks like this:  [      id,      priority,      metadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token to retrieve the active assets for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -338,14 +338,14 @@ Used to get extended active assets of the given token.
 
 *The full `ExtendedEquippableActiveAsset` looks like this:  [      ID,      equippableGroupId,      priority,      catalogAddress,      metadata,      [          fixedPartId0,          fixedPartId1,          fixedPartId2,          slotPartId0,          slotPartId1,          slotPartId2      ]  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token to retrieve the extended active assets for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -361,14 +361,14 @@ Used to get extended information about a specified token.
 
 *The full `ExtendedNft` struct looks like this:  [      tokenMetadataUri,      directOwner,      rootOwner,      activeAssetCount,      pendingAssetCount      priorities,      maxSupply,      totalSupply,      issuer,      name,      symbol,      activeChildrenNumber,      pendingChildrenNumber,      isSoulbound,      hasMultiAssetInterface,      hasNestingInterface,      hasEquippableInterface  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which to retireve the `ExtendedNft` struct |
 | targetCollection | address | Address of the collection to which the specified token belongs to |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -384,14 +384,14 @@ Used to get the extended pending assets of the given token.
 
 *The full `ExtendedPendingAsset` looks like this:  [      ID,      equippableGroupId,      acceptRejectIndex,      replacesAssetWithId,      catalogAddress,      metadata,      [          fixedPartId0,          fixedPartId1,          fixedPartId2,          slotPartId0,          slotPartId1,          slotPartId2      ]  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token to retrieve the extended pending assets for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -407,14 +407,14 @@ Used to retrieve the contract address and ID of the parent token of the specifie
 
 *Reverts if child token is not owned by an NFT.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | childAddress | address | Address of the child token&#39;s collection smart contract |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -431,14 +431,14 @@ Used to get the pending assets of the given token.
 
 *The full `PendingAsset` looks like this:  [      id,      acceptRejectIndex,      replacesAssetWithId,      metadata  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token to retrieve the pending assets for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -454,7 +454,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s pending child t
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -463,7 +463,7 @@ Used to retrieve the given child&#39;s index in its parent&#39;s pending child t
 | childAddress | address | Address of the child token&#39;s colection smart contract |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -479,7 +479,7 @@ Used to retrieve the parent address and its slot part IDs for a given target chi
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -487,7 +487,7 @@ Used to retrieve the parent address and its slot part IDs for a given target chi
 | tokenId | uint256 | ID of the parent token |
 | assetId | uint64 | ID of the parent asset from which to get the slot parts |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -504,14 +504,14 @@ Used to retrieve ID, priority value and metadata URI of the asset with the highe
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Collection smart contract of the token for which to retireve the top asset |
 | tokenId | uint256 | ID of the token for which to retrieve the top asset |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -529,14 +529,14 @@ Used to retrieve the equippable data of the specified token&#39;s asset with the
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the collection smart contract of the specified token |
 | tokenId | uint256 | ID of the token for which to retrieve the equippable data of the asset with the highest priority |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -552,14 +552,14 @@ Used to retrieve the metadata URI of the specified token&#39;s asset with the hi
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the given token |
 | tokenId | uint256 | ID of the token for which to retrieve the metadata URI of the asset with the highest priority |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -575,14 +575,14 @@ Used to retrieve the metadata URI of the specified token&#39;s asset with the hi
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | target | address | Address of the smart contract of the tokens |
 | tokenIds | uint256[] | IDs of the tokens for which to retrieve the metadata URIs |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -598,14 +598,14 @@ Used to retrieve the total number of descendants of the given token and whether 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -622,14 +622,14 @@ Used to retrieve whether a token has more than one level of nesting.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -645,7 +645,7 @@ Used to verify whether a given child asset is equipped into a given parent slot.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -657,7 +657,7 @@ Used to verify whether a given child asset is equipped into a given parent slot.
 | childAssetId | uint64 | ID of the child asset |
 | slotPartId | uint64 | ID of the slot part |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -673,14 +673,14 @@ Used to identify if the given token is rejected or abandoned. That is, it&#39;s 
 
 *Returns false if the immediate owner is not an NFT.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | collection | address | Address of the token&#39;s collection smart contract |
 | tokenId | uint256 | ID of the token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -696,14 +696,14 @@ Used to split slot and fixed parts.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | allPartIds | uint64[] | [] An array of `Part` IDs containing both, `Slot` and `Fixed` parts |
 | catalogAddress | address | An address of the catalog to which the given `Part`s belong to |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -720,7 +720,7 @@ Used to validate whether the specified child token is owned by a given parent to
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -729,7 +729,7 @@ Used to validate whether the specified child token is owned by a given parent to
 | parentId | uint256 | ID of the parent token |
 | childId | uint256 | ID of the child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -745,7 +745,7 @@ Used to validate whether the specified child token is owned by a given parent to
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -754,7 +754,7 @@ Used to validate whether the specified child token is owned by a given parent to
 | parentId | uint256 | ID of the parent token |
 | childIds | uint256[] | An array of child token IDs to verify |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

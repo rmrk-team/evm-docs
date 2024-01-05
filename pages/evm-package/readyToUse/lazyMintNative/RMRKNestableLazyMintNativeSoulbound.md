@@ -21,7 +21,7 @@ Interface identifier of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ Version of the @rmrk-team/evm-contracts package
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -54,7 +54,7 @@ Used to accept a pending child token for a given parent token.
 
 *This moves the child token from parent token&#39;s pending child tokens array into the active child tokens  array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -73,7 +73,7 @@ Used to add a child token to a given parent token.
 
 *This adds the child token into the given parent token&#39;s pending child tokens array.Requirements:  - `directOwnerOf` on the child contract must resolve to the called contract.  - the pending array of the parent contract must not be full.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -91,7 +91,7 @@ Used to grant a one-time approval to manage one&#39;s token.
 
 *Gives permission to `to` to transfer `tokenId` token to another account.The approval is cleared when the token is transferred.Only a single account can be approved at a time, so approving the zero address clears previous approvals.Requirements: - The caller must own the token or be an approved operator. - `tokenId` must exist.Emits an {Approval} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -108,13 +108,13 @@ Used to retrieve the number of tokens in `owner`&#39;s account.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the account being checked |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -130,7 +130,7 @@ Used to burn a given token.
 
 *In case the token has any child tokens, the execution will be reverted.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -146,14 +146,14 @@ Used to burn a given token.
 
 *When a token is burned, all of its child tokens are recursively burned as well.When specifying the maximum recursive burns, the execution will be reverted if there are more children to be  burned.Setting the `maxRecursiveBurn` value to 0 will only attempt to burn the specified token and revert if there  are any child tokens present.The approvals are cleared when the token is burned.Requirements:  - `tokenId` must exist.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to burn |
 | maxChildrenBurns | uint256 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -169,14 +169,14 @@ Used to retrieve a specific active child token for a given parent token.
 
 *Returns a single Child struct locating at `index` of parent token&#39;s active child tokens array.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which the child is being retrieved |
 | index | uint256 | Index of the child token in the parent token&#39;s active child tokens array |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -192,13 +192,13 @@ Used to retrieve the active child tokens of a given parent token.
 
 *Returns array of Child structs existing for parent token.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which to retrieve the active child tokens |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -215,7 +215,7 @@ Used to retrieve the metadata URI of the collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -231,13 +231,13 @@ Used to retrieve the immediate owner of the given token.
 
 *If the immediate owner is another token, the address returned, should be the one of the parent token&#39;s  collection smart contract.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the RMRK owner is being retrieved |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -255,13 +255,13 @@ Used to retrieve the account approved to manage given token.
 
 *Requirements:  - `tokenId` must exist.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to check for approval |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -278,7 +278,7 @@ Used to retrieve the specified royalty percentage.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -295,7 +295,7 @@ Used to retrieve the recipient of royalties.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -311,14 +311,14 @@ Used to check if the given address is allowed to manage the tokens of the specif
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | owner | address | Address of the owner of the tokens |
 | operator | address | Address being checked for approval |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -334,13 +334,13 @@ Used to check if the address is one of the contributors.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | contributor | address | Address of the contributor whose status we are checking |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -356,7 +356,7 @@ Used to check whether the given token is transferable or not.
 
 *If this function returns `false`, the transfer of the token MUST revert execution.If the tokenId does not exist, this method MUST revert execution, unless the token is being checked for  minting.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -364,7 +364,7 @@ Used to check whether the given token is transferable or not.
 | from | address | Address from which the token is being transferred |
 | to | address | Address to which the token is being transferred |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -380,7 +380,7 @@ Adds or removes a contributor to the smart contract.
 
 *Can only be called by the owner.Emits ***ContributorUpdate*** event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -398,7 +398,7 @@ Used to retrieve the maximum supply of the collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -414,14 +414,14 @@ Used to mint the desired number of tokens to the specified address.
 
 *The `data` value of the `_safeMint` method is set to an empty value.Can only be called while the open sale is open.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | to | address | Address to which to mint the token |
 | numToMint | uint256 | Number of tokens to mint |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -438,7 +438,7 @@ Used to retrieve the collection name.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -454,7 +454,7 @@ Used to mint a desired number of child tokens to a given parent token.
 
 *The `data` value of the `_safeMint` method is set to an empty value.Can only be called while the open sale is open.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -462,7 +462,7 @@ Used to mint a desired number of child tokens to a given parent token.
 | numToMint | uint256 | Number of tokens to mint |
 | destinationId | uint256 | ID of the token into which to mint the new child token |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -478,7 +478,7 @@ Used to transfer the token into another token.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -499,7 +499,7 @@ Returns the address of the current owner.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -513,15 +513,15 @@ function ownerOf(uint256 tokenId) external view returns (address owner_)
 
 Used to retrieve the *root* owner of a given token.
 
-*The *root* owner of the token is an externally owned account (EOA). If the given token is child of another  NFT, this will return an EOA address. Otherwise, if the token is owned by an EOA, this EOA wil be returned.*
+*The *root* owner of the token is an externally owned account (EOA). If the given token is child of another  NFT, this will return an EOA address. Otherwise, if the token is owned by an EOA, this EOA will be returned.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the *root* owner has been retrieved |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -537,14 +537,14 @@ Used to retrieve a specific pending child token from a given parent token.
 
 *Returns a single Child struct locating at `index` of parent token&#39;s active child tokens array.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which the pending child token is being retrieved |
 | index | uint256 | Index of the child token in the parent token&#39;s pending child tokens array |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -560,13 +560,13 @@ Used to retrieve the pending child tokens of a given parent token.
 
 *Returns array of pending Child structs existing for given parent.The Child struct consists of the following values:  [      tokenId,      contractAddress  ]*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | parentId | uint256 | ID of the parent token for which to retrieve the pending child tokens |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -583,7 +583,7 @@ Used to retrieve the price per mint.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -599,7 +599,7 @@ Used to reject all pending children of a given parent token.
 
 *Removes the children from the pending array mapping.This does not update the ownership storage data on children. If necessary, ownership can be reclaimed by the  rootOwner of the previous parent.Requirements: Requirements: - `parentId` must exist*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -627,14 +627,14 @@ Used to retrieve the information about who shall receive royalties of a sale of 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token for which the royalty info is being retrieved |
 | salePrice | uint256 | Price of the token sale |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -651,7 +651,7 @@ Used to safely transfer a given token token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must exist and be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.  - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -669,7 +669,7 @@ Used to safely transfer a given token token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must exist and be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.  - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -688,7 +688,7 @@ Used to approve or remove `operator` as an operator for the caller.
 
 *Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller.Requirements: - The `operator` cannot be the caller.Emits an {ApprovalForAll} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -705,13 +705,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 *Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -728,7 +728,7 @@ Used to retrieve the collection symbol.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -744,13 +744,13 @@ Used to retrieve the metadata URI of a token.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the metadata URI for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -767,7 +767,7 @@ Used to retrieve the total number of assets.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -784,7 +784,7 @@ Used to retrieve the total supply of the tokens in a collection.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -800,7 +800,7 @@ Used to transfer a child token from a given parent token.
 
 *When transferring a child token, the owner of the token is set to `to`, or is not updated in the event of  `to` being the `0x0` address.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -823,7 +823,7 @@ Transfers a given token from `from` to `to`.
 
 *Requirements:  - `from` cannot be the zero address.  - `to` cannot be the zero address.  - `tokenId` token must be owned by `from`.  - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}.Emits a {Transfer} event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -841,7 +841,7 @@ Transfers ownership of the contract to a new owner.
 
 *Can only be called by the current owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -857,7 +857,7 @@ Used to update recipient of royalties.
 
 *Custom access control has to be implemented to ensure that only the intended actors can update the  beneficiary.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -873,7 +873,7 @@ Used to withdraw the minting proceedings to a specified address.
 
 *This function can only be called by the owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -894,7 +894,7 @@ Used to notify listeners that all pending child tokens of a given token have bee
 
 *Emitted when a token removes all a child tokens from its pending array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -910,7 +910,7 @@ event Approval(address indexed owner, address indexed approved, uint256 indexed 
 
 *Emitted when `owner` enables `approved` to manage the `tokenId` token.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -928,7 +928,7 @@ event ApprovalForAll(address indexed owner, address indexed operator, bool appro
 
 *Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -946,7 +946,7 @@ Used to notify listeners that a new child token was accepted by the parent token
 
 *Emitted when a parent token accepts a token from its pending array, migrating it to the active array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -965,7 +965,7 @@ Used to notify listeners that a new token has been added to a given token&#39;s 
 
 *Emitted when a child NFT is added to a token&#39;s pending array.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -984,7 +984,7 @@ Used to notify listeners a child token has been transferred from parent token.
 
 *Emitted when a token transfers a child from itself, transferring ownership to the root owner.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1005,7 +1005,7 @@ Event that signifies that an address was granted contributor role or that the pe
 
 *This can only be triggered by a current owner, so there is no need to include that information in the event.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1022,7 +1022,7 @@ Used to notify listeners that the token is being transferred.
 
 *Emitted when `tokenId` token is transferred from `from` to `to`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1042,7 +1042,7 @@ Used to anounce the transfer of ownership.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1059,7 +1059,7 @@ event Transfer(address indexed from, address indexed to, uint256 indexed tokenId
 
 *Emitted when `tokenId` token is transferred from `from` to `to`.*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -1268,7 +1268,7 @@ Attempting to burn a total number of recursive children higher than maximum set
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

@@ -21,7 +21,7 @@ function collectionMetadata() external view returns (string)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -38,7 +38,7 @@ function contractURI() external view returns (string)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -55,7 +55,7 @@ function getRoyaltyPercentage() external view returns (uint256)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -72,7 +72,7 @@ function getRoyaltyRecipient() external view returns (address)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -89,7 +89,7 @@ function maxSupply() external view returns (uint256)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -106,7 +106,7 @@ function name() external view returns (string)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -123,7 +123,7 @@ function owner() external view returns (address)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -140,7 +140,7 @@ function symbol() external view returns (string)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -157,7 +157,7 @@ function totalSupply() external view returns (uint256)
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

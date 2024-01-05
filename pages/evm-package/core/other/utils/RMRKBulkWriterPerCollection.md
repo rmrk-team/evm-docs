@@ -20,7 +20,7 @@ function bulkEquip(uint256 tokenId, RMRKBulkWriterPerCollection.IntakeUnequip[] 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -39,7 +39,7 @@ Returns the address of the collection that this contract is managing
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -55,7 +55,7 @@ function replaceEquip(IERC6220.IntakeEquip data) external nonpayable
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

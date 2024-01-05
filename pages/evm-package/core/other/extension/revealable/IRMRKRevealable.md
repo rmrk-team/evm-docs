@@ -21,7 +21,7 @@ Gets the `IRMRKRevealer` associated with the contract.
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -37,7 +37,7 @@ Reveals the asset for the given tokenIds by adding and accepting and new one.
 
 *SHOULD ask revealer which assetId should be added to the token and which asset to replace through `IRMRKRevealer.getAssetsToReveal`SHOULD be called by the owner or approved for assetsSHOULD add the new asset to each token and accept it*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -53,7 +53,7 @@ Sets the `IRMRKRevealer` associated with the contract.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

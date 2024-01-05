@@ -20,7 +20,7 @@ function bulkEquip(address collection, uint256 tokenId, RMRKBulkWriter.IntakeUne
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -39,7 +39,7 @@ function replaceEquip(address collection, IERC6220.IntakeEquip data) external no
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

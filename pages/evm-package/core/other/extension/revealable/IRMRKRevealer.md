@@ -20,13 +20,13 @@ For each `tokenId` in `tokenIds` returns whether it can be revealed or not
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenIds | uint256[] | The `tokenIds` to check |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -42,13 +42,13 @@ Returns the revealed `assetIds` for the given `tokenIds` and marks them as revea
 
 *This CAN add new assets to the original contract if necessary, in which case it SHOULD have the necessary permissionsThis method MUST only return existing `assetIds`This method MUST be called only by the contract implementing the `IRMRKRevealable` interface, during the `reveal` methodThis method MUST return the same amount of `revealedAssetsIds` and `assetsToReplaceIds`  as `tokenIds`*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenIds | uint256[] | The `tokenIds` to reveal |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -69,7 +69,7 @@ event Revealed(uint256[] indexed tokenIds, uint64[] revealedAssetsIds, uint64[] 
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|

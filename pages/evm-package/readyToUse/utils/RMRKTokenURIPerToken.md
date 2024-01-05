@@ -20,13 +20,13 @@ Used to retrieve the metadata URI of a token.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | tokenId | uint256 | ID of the token to retrieve the metadata URI for |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|

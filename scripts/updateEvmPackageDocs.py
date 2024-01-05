@@ -2,6 +2,8 @@
 
 import os
 import shutil
+import subprocess
+import shlex
 
 ORIGIN_PATH = '../evm/docs/'
 DESTINATION_PATH = './pages/evm-package/'
@@ -34,6 +36,9 @@ def main(origin_path, destination_path, mappings):
         shutil.copytree(os.path.join(origin_path, from_), os.path.join(destination_path, to), dirs_exist_ok=True)
     for remove in REMOVE:
         shutil.rmtree(os.path.join(destination_path, remove))
+    
+    subprocess.run(shlex.split("find pages/evm-package -type f -name '*.md' -exec sed -i -e 's/#### Returns/**Returns**/g;s/#### Parameters/**Parameters**/g' {} \;"))
+
 
 if __name__ == "__main__":
     main(ORIGIN_PATH, DESTINATION_PATH, MAPPINGS)

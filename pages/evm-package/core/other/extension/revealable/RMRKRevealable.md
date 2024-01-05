@@ -21,7 +21,7 @@ Returns the address of the revealer contract
 
 
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
@@ -37,7 +37,7 @@ Reveals the assets for the given tokenIds
 
 *This method SHOULD be called by the owner or approved for assetsThis method SHOULD add the asset to the token and accept itThis method SHOULD get the `assetId` to add and replace from the revealer contractThis `assetId` to replace CAN be 0, meaning that the asset is added to the token without replacing anythingThe revealer contract MUST take care of ensuring the `assetId` exists on the contract implementating this interface*
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -53,7 +53,7 @@ Sets the `IRMRKRevealer` associated with the contract.
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
@@ -69,13 +69,13 @@ function supportsInterface(bytes4 interfaceId) external view returns (bool)
 
 
 
-#### Parameters
+**Parameters**
 
 | Name | Type | Description |
 |---|---|---|
 | interfaceId | bytes4 | undefined |
 
-#### Returns
+**Returns**
 
 | Name | Type | Description |
 |---|---|---|
