@@ -1,7 +1,7 @@
 {
   "emotable": "Emotable",
   "equippable": "Equippable",
-  "multiasset": "Multiasset",
+  "multiasset": "MultiAsset",
   "nestable": "Nestable",
   "tokenAttributes": "Token Attributes"
 }

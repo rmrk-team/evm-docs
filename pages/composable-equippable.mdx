@@ -22,7 +22,9 @@ There are two important terms when talking about ERC-6220: **composing** and **e
 
 To achieve composability and equippability, we rely on Catalogs. A Catalog can be considered a _colleciton of parts_ from which an NFT can be composed. Parts can be either of the `slot` type or `fixed` type. Slots are intended for equippables.
 
-**NOTE: A catalog is referenced in an NFT as a separate** [**asset**](multiasset.md) **by specifying the catalog and cherry picking the list of parts from the catalog for that NFT instance.**
+<Callout type='info'>
+    A catalog is referenced in a RMRK NFT collection by [adding equippable assets](../basic-usage/configuring-equippability#add-new-asset). Equippable assets define the catalog and the list of slot and fixed parts to be used. These assets can later be [added to tokens](../basic-usage/asset-management#adding-an-asset-to-a-token).
+</Callout>
 
 <Callout type='info' emoji='⚙️'>
     Check implementations [here](/implementations#composable--equippable)
