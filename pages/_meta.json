@@ -26,7 +26,8 @@
   "composable-equippable": "Composable & Equippable", 
   "emotable": "Emotable", 
   "soulbound": "Soulbound",
-  "attributes": "Attributes",  
+  "attributes": "Attributes",
+  "erc20holder": "ERC20-Holder",
   "-- Reference": {
     "type": "separator",
     "title": "References"
