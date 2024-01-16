@@ -161,7 +161,7 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         
         * Add the following code to the `journey.ts` file:
 
-        ```javasc copy
+        ```typescript copy
         import {ethers} from 'ethers'
         ;(async function () {
             try {
@@ -431,13 +431,6 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         Collection added to Singular Registry
         Nothing to compile
         No need to generate any newer typings.
-        Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
-        --> @rmrk-team/evm-contracts/contracts/RMRK/extension/RMRKRoyalties.sol:74:9:
-        |
-        74 |         uint256 tokenId,
-        |         ^^^^^^^^^^^^^^^
-
-
         Successfully submitted source code for contract
         contracts/Kingdom.sol:Kingdom at 0x1199844a6d09240cbaEb0fd0Ba64Fb089cd23Ae2
         for verification on the block explorer. Waiting for verification result...
@@ -460,13 +453,6 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         Collection added to Singular Registry
         Nothing to compile
         No need to generate any newer typings.
-        Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
-        --> @rmrk-team/evm-contracts/contracts/RMRK/extension/RMRKRoyalties.sol:74:9:
-        |
-        74 |         uint256 tokenId,
-        |         ^^^^^^^^^^^^^^^
-
-
         Successfully submitted source code for contract
         contracts/Army.sol:Army at 0x2504e3Dba8094B03eA4AD92fd50cCfdf4D2F9043
         for verification on the block explorer. Waiting for verification result...
@@ -489,13 +475,6 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         Collection added to Singular Registry
         Nothing to compile
         No need to generate any newer typings.
-        Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
-        --> @rmrk-team/evm-contracts/contracts/RMRK/extension/RMRKRoyalties.sol:74:9:
-        |
-        74 |         uint256 tokenId,
-        |         ^^^^^^^^^^^^^^^
-
-
         Successfully submitted source code for contract
         contracts/Soldier.sol:Soldier at 0x3FaA4C4824790a48c67888cc54FfE5b3C729f870
         for verification on the block explorer. Waiting for verification result...
@@ -516,27 +495,41 @@ Remix requires no installation, but Hardhat version will take care of verifying 
 
         To interact with our smart contract we will need to create an instance of the Kingdom and Soldier and attach the deployed addresses. Since we might need this several times, let's create a script to get the instance. 
         
-        Create a `getContracts.ts` file under the `scripts` folder and add the following code, replacing the kingdom and soldier addresses for the one you just deployed. This will return intances of `Kingdom`, `Army` and `Soldier` that we can use to interact with the contracts.
+        Create a `getContracts.ts` file under the `scripts` folder and add the following code, replacing the kingdom and soldier addresses for the one you just deployed. This will return intances of `Kingdom`, `Army` and `Soldier` that we can use to interact with the contracts. When running unit tests in the local hardhat network, it will create deploy new instances, otherwise it will point to the deployed ones.
 
         ```typescript copy
         import { ethers } from 'hardhat';
         import { Kingdom, Army, Soldier } from '../typechain-types';
+        import deployKingdom from './deployKingdom';
+        import deployArmy from './deployArmy';
+        import deploySoldier from './deploySoldier';
 
         export async function getContracts(): Promise<{ kingdom: Kingdom; army: Army; soldier: Soldier }> {
-          // REPLACE THE ADDRESSSES FOR THE ONES YOU JUST DEPLOYED:
-          const kingdomAddress = '0x1199844a6d09240cbaEb0fd0Ba64Fb089cd23Ae2';
-          const kingdomFactory = await ethers.getContractFactory('Kingdom');
-          const kingdom = <Kingdom>kingdomFactory.attach(kingdomAddress);
+            let kingdom: Kingdom;
+            let army: Army;
+            let soldier: Soldier;
 
-          const armyAddress = '0x2504e3Dba8094B03eA4AD92fd50cCfdf4D2F9043';
-          const armyFactory = await ethers.getContractFactory('Army');
-          const army = <Army>armyFactory.attach(armyAddress);
+            // If we are on a local network, deploy the contracts and return them
+            if ((await ethers.provider.getNetwork()).name === 'hardhat') {
+                kingdom = await deployKingdom();
+                army = await deployArmy();
+                soldier = await deploySoldier();
+            } else {
+                // REPLACE THE ADDRESSSES FOR THE ONES YOU JUST DEPLOYED:
+                const kingdomAddress = '0x1199844a6d09240cbaEb0fd0Ba64Fb089cd23Ae2';
+                const kingdomFactory = await ethers.getContractFactory('Kingdom');
+                kingdom = <Kingdom>kingdomFactory.attach(kingdomAddress);
 
-          const soldierAddress = '0x3FaA4C4824790a48c67888cc54FfE5b3C729f870';
-          const soldierFactory = await ethers.getContractFactory('Soldier');
-          const soldier = <Kingdom>soldierFactory.attach(soldierAddress);
+                const armyAddress = '0x2504e3Dba8094B03eA4AD92fd50cCfdf4D2F9043';
+                const armyFactory = await ethers.getContractFactory('Army');
+                army = <Army>armyFactory.attach(armyAddress);
 
-          return { kingdom, army, soldier };
+                const soldierAddress = '0x3FaA4C4824790a48c67888cc54FfE5b3C729f870';
+                const soldierFactory = await ethers.getContractFactory('Soldier');
+                soldier = <Kingdom>soldierFactory.attach(soldierAddress);
+            }
+
+            return { kingdom, army, soldier };
         }
         ```
 
@@ -549,21 +542,22 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         Add the following code to the `journey.ts` file:
 
         ```typescript copy
-          import { ethers, network } from 'hardhat';
-          import { getContracts } from './getContracts';
+        import { ethers, network } from 'hardhat';
+        import { getContracts } from './getContracts';
 
-          async function main(): Promise<void> {
-          console.log(`Running kingdom journey on ${network.name} blockchain...`);
+        async function main(): Promise<void> {
+        console.log(`Running kingdom journey on ${network.name} blockchain...`);
 
-          const [wizard] = await ethers.getSigners();
-          console.log(`Running journey with account: ${wizard.address}`);
+        const [wizard] = await ethers.getSigners();
+        console.log(`Running journey with account: ${wizard.address}`);
 
-          const { kingdom, army, soldier } = await getContracts();
-          console.log(`Using Kingdom deployed at ${kingdom.address}`);
-          console.log(`Using Army deployed at ${army.address}`);
-          console.log(`Using Soldier deployed at ${soldier.address}`);
+        const { kingdom, army, soldier } = await getContracts();
 
-          // Journey starts here:
+        console.log(`Using Kingdom deployed at ${await kingdom.getAddress()}`);
+        console.log(`Using Army deployed at ${await army.getAddress()}`);
+        console.log(`Using Soldier deployed at ${await soldier.getAddress()}`);
+
+        // Journey starts here:
         }
 
         main().catch((error) => {

@@ -219,18 +219,27 @@ Remix requires no installation, but Hardhat version will take care of verifying 
 
         To interact with our smart contract we will need to create an instance of the CookBook and attach the deployed address. Since we might need this several times, let's create a script to get the instance. 
         
-        * Create a `getCookbook.ts` file under the `scripts` folder and add the following code, replacing the cookbook address for the one you just deployed. This will return a `CookBook` instance that we can use to interact with the contract.   
+        * Create a `getCookbook.ts` file under the `scripts` folder and add the following code, replacing the cookbook address for the one you just deployed. When running unit tests in the local hardhat network, it will create deploy a new cookbook, otherwise it will point to the deployed instance. We can use it to interact with the contract.
 
         ```typescript copy
         import { ethers } from 'hardhat';
         import { CookBook } from '../typechain-types';
+        import deployCookbook from './deploy';
 
         export async function getCookbook(): Promise<CookBook> {
+        let cookbook: CookBook;
+
+        if ((await ethers.provider.getNetwork()).name === 'hardhat') {
+            cookbook = await deployCookbook();
+        } else {
             // REPLACE THE COOKBOOK ADDRESS FOR THE ONE YOU JUST DEPLOYED:
             const cookbookAddress = '0xB4d3b179ACA978A7C0D22dd9E3cA8D6872B204A4';
             const contractFactory = await ethers.getContractFactory('CookBook');
-            return <CookBook> contractFactory.attach(cookbookAddress);
+            cookbook = <CookBook>contractFactory.attach(cookbookAddress);
         }
+        return cookbook;
+        }
+
         ```
 
         <Callout type="warning">
@@ -251,7 +260,7 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         console.log(`Deploying contracts with the account: ${alice.address}`);
 
         const cookbook = await getCookbook();
-        console.log(`Using Cookbook deployed at ${cookbook.address}.`);
+        console.log(`Using Cookbook deployed at ${await cookbook.getAddress()}.`);
 
         // Journey starts here:
         }

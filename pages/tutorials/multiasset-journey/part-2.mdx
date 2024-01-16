@@ -127,8 +127,8 @@ Now Master will add the 3 recipes (assets) to his cookbook.
         On your `journey.ts` script, let's add the code to add the 3 assets to the master's cookbook.
         ```typescript copy
         // 3. Recipes creation - Adding assets to a token
-        const assetIds = [1, 2, 3];
-        const masterCookbookId = 1;
+        const masterCookbookId = 1; // We know this because it is the second minted token, in a production environment you would get it from the emitted Transfer event, since there might be other tokens minted in between.
+        const assetIds = [1, 2, 3]; // Similarly, in production you would read the AssetAddedToTokens event to get the asset ids.
         for (const assetId of assetIds) {
             tx = await cookbook.connect(master).addAssetToToken(masterCookbookId, assetId, 0);
             await tx.wait();
@@ -187,7 +187,6 @@ Our ready to use Pre-Mint implementations, allow for the owner or a contributor 
         tx = await cookbook.connect(master).manageContributor(alice.address, true);
         await tx.wait();
         console.log(`Added ${alice.address} as a contributor`);
-
         ```
         <Callout type="info">
             We will run the journey only at the end, so we do not need to comment past steps or add multiple scripts.
@@ -473,7 +472,6 @@ You can use these 2 IPFS URIs for the metadata:
         console.log(
             `Added ${assetIdsByMasterToAlice.length} assets to the token ${alicesCookbookId} and 1 to ${masterCookbookId}`,
         );
-
         ```
         <Callout type="info">
             We will run the journey only at the end, so we do not need to comment past steps or add multiple scripts.
@@ -544,8 +542,11 @@ _Fortunately Master's recipes will be available for the next generations, but wi
         // await cookbook.connect(master).burn(masterCookbookId);
         // console.log(`Burned token ${masterCookbookId}`);
         ```
-        You can now run the journey:
+        You can now run the journey. First give it a try using local hardhat network, then run it on the testing network you are using.
         ```bash copy
+        // If you don't specify a network it will use the local hardhat network:
+        yarn hardhat run scripts/journey.ts
+        // Or you can specify the network:
         yarn hardhat run scripts/journey.ts --network moonbaseAlpha
         ```
         You should see the following output (except for the addresses):
