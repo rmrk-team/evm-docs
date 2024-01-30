@@ -1,0 +1,39 @@
+import { Steps, Callout, Tabs } from 'nextra/components'
+
+# Equippable & Composable Journey ( Part 2, Configuration & Minting )
+
+This tutorial is in progress, it will be completed within days. An equivalent working version of the code is available at [RMRK's examples repo](https://github.com/rmrk-team/rmrk-examples/tree/master/contract-examples/chunkies) on Github. Once the tutorial is completed, it will reflect the latest code.
+
+#### User journey context
+
+Chunkies are mystical creatures with 3 attributes which can have different color variations: Head, Body and Hands. For our test case, each variation may come in 4 different colors. Chunkies are also able to equip items in both of their hands.
+
+For the combination of attributes we will be using Fixed parts, these must be defined in the catalog and every chunky asset will pick one of each. This is in a nutshell what composable NFTs are about: You define a set of possible fixed parts on the catalog and you can compose assets from it.
+
+To have the chunkies be able to equip items, we will use the equippable feature. The slot parts in this case, must also be defined in the catalog and the chunky asset must also point at them. The collections which can be equipped into such slot must be configured, and the those also need to point at the slot they can be equipped into. It sounds like a lot, but it ensures that only compatible assets can be equipped into each other.
+
+<Steps>
+
+### Configuring Catalog
+
+### Minting Chunkies
+
+### Adding Item Assets
+
+### Minting Assets
+
+### Putting it all together
+
+### Running on hardhat blockchain
+
+### Rendering your NFTs
+
+</Steps>
+
+## User journey summary
+
+
+## Bugs, doubts and help
+
+For clarifications, bug reporting or help please open a Github issue or write a message here:
+- **Telegram**: https://t.me/rmrkimpl
