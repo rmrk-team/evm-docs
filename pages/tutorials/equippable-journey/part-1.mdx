@@ -175,8 +175,9 @@ const BASE_IPFS_URI = 'ipfs://QmadB7RnpfXSd2JX1e6HZLBKwSkBR3PiXhTmkN9dE5DKur';
 const CHUNKY_METADATA = BASE_IPFS_URI + '/chunkies/collection.json';
 const CHUNKY_ITEM_METADATA = BASE_IPFS_URI + '/items/collection.json';
 
-// Catalog metadata
+// Catalog
 const CHUNKY_CATALOG_METADATA = BASE_IPFS_URI + '/catalog/metadata.json';
+const CHUNKY_CATALOG_TYPE = 'image/*';
 const CHUNKY_ITEM_LEFT_SLOT_METADATA = BASE_IPFS_URI + 'catalog/slots/item-left.json';
 const CHUNKY_ITEM_RIGHT_SLOT_METADATA = BASE_IPFS_URI + 'catalog/slots/item-right.json';
 
@@ -221,6 +222,7 @@ export {
   CHUNKY_METADATA,
   CHUNKY_ITEM_METADATA,
   CHUNKY_CATALOG_METADATA,
+  CHUNKY_CATALOG_TYPE,
   CHUNKY_V1_HEAD_FIXED_PART_ID,
   CHUNKY_V1_BODY_FIXED_PART_ID,
   CHUNKY_V1_HANDS_FIXED_PART_ID,
