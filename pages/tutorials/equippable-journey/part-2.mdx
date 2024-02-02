@@ -718,7 +718,18 @@ Run the utility to render the NFTs:
 pnpm dev
 ```
 
-Once the process is running you can go to `http://localhost:3001` (the port might change depending on what you are running) and see your NFTs rendered at http://localhost:3001/{NETWORK}/{COLLECTION_ADDRESS}/{ID}. In our case, the network is 31337 (hardat), the collection address is 0x5FbDB2315678afecb367f032d93F642f64180aa3 and we have 5 NFTs with IDs 1 to 5. So you can see them at:
+Check the port, it might change depending on what you are running. In our case it is 3001. You will see a similar output:
+```bash
+> react-nextjs-example@0.0.0 dev /path/to/react-nextjs-example
+> next dev
+
+  ▲ Next.js 13.5.3
+  - Local:        http://localhost:3001
+
+ ✓ Ready in 2.1s
+```
+
+Once the process is running you can go to http://localhost:3001/{NETWORK}/{COLLECTION_ADDRESS}/{ID} to render your NFTs. In our case, the network is 31337 (hardhat), the collection address is `0x5FbDB2315678afecb367f032d93F642f64180aa3` and we have 5 NFTs with IDs 1 to 5. You can see the first one at:
 
 http://localhost:3001/31337/0x5FbDB2315678afecb367f032d93F642f64180aa3/1
 
