@@ -1,4 +1,4 @@
-import { Steps, Callout, Tabs, FileTree } from 'nextra/components'
+import { Steps, Callout, FileTree } from 'nextra/components'
 
 # Equippable & Composable Journey (Part 1, Setup)
 
@@ -56,10 +56,9 @@ Without reloading or changing the configuration on the "Smart Contract" tab, go 
 3. Leave the Royalty receiver empty, so it uses deployer account as receiver.
 4. Set Royalty percentage to 3%.
 5. Enable the "Use 2 scripts" option. This way, the wizard will generate a script with the methods to deploy and another one to actually run the deployment.
-6. Download both scripts and place them under the `scripts` folder of the cloned repository.
-7. You may overwrite the existing `deploy.ts` file.
-
 ![Wizard Chunkies Deploy Script Configuration](/images/tutorials/equippable-chunkies/chunkies-deploy-script.png) 
+6. Copy the `deployChunkies` method into to your `deploy-methods.ts` file. Also update imports to include  `getRegistry` and `ChunkyItems`. Keep the existing methods, we will use them later.
+7. Download the second script, which runs the deploy. You may overwrite the existing `scripts/run-deploy.ts` file.
 
 ### Create the Chunkies Items contract
 
@@ -81,13 +80,13 @@ Without reloading or changing the configuration on the "Smart Contract" tab, go 
 3. Leave the Royalty receiver empty, so it uses deployer account as receiver.
 4. Set Royalty percentage to 3%.
 5. Enable the "Use 2 scripts" option. This way, the wizard will generate a script with the methods to deploy and another one to actually run the deployment.
-
 ![Wizard Chunkies Deploy Script Configuration](/images/tutorials/equippable-chunkies/chunky-items-deploy-script.png) 
+6. Copy the `deployChunkyItems` method into to your `deploy-methods.ts` file. Also update import from `typechain-files` to include `ChunkyItems`
+7. On your `run-deploy.ts` file, add the `deployChunkyItems` import and add a call to it after `deployChunkies` method. Your file should look like this:
 
-6. Copy the `deployChunkyItems` method to your previously downloaded `deploy.ts` file. Also update import from `typechain-files` to include `ChunkyItems`
-7. On your `run-deploy.ts` file, add the `deployChunkyItems` import and method to the list of methods to run. It should look like this:
+
 ```typescript copy
-import { deployChunkies, deployChunkyItems } from './deploy.ts';
+import { deployChunkies, deployChunkyItems } from './deploy-methods';
 
 async function main() {
   await deployChunkies();
@@ -100,6 +99,101 @@ main().catch((error) => {
 });
 ```
 
+Your `deploy-methods.ts` file should look like this:
+
+```typescript copy
+import { ethers, run, network } from 'hardhat';
+import {
+  Chunkies,
+  ChunkyItems,
+  RMRKCatalogImpl,
+  RMRKBulkWriter,
+  RMRKCatalogUtils,
+  RMRKCollectionUtils,
+  RMRKEquipRenderUtils,
+} from '../typechain-types';
+import { getRegistry } from './get-gegistry';
+import { delay, isHardhatNetwork } from './utils';
+import * as C from './constants';
+
+// Add your deploy methods here:
+
+export async function deployChunkies(): Promise<Chunkies> {
+  console.log(`Deploying Chunkies to ${network.name} blockchain...`);
+
+  const contractFactory = await ethers.getContractFactory('Chunkies');
+  const args = [
+    'ipfs://QmadB7RnpfXSd2JX1e6HZLBKwSkBR3PiXhTmkN9dE5DKur/chunkies/collection.json',
+    100n,
+    (await ethers.getSigners())[0].address,
+    300,
+  ] as const;
+
+  const contract: Chunkies = await contractFactory.deploy(...args);
+  await contract.waitForDeployment();
+  const contractAddress = await contract.getAddress();
+  console.log(`Chunkies deployed to ${contractAddress}.`);
+
+  if (!isHardhatNetwork()) {
+    console.log('Waiting 10 seconds before verifying contract...');
+    delay(10000);
+    await run('verify:verify', {
+      address: contractAddress,
+      constructorArguments: args,
+      contract: 'contracts/Chunkies.sol:Chunkies',
+    });
+
+    // Only do on testing, or if whitelisted for production
+    const registry = await getRegistry();
+    await registry.addExternalCollection(contractAddress, args[0]);
+    console.log('Collection added to Singular Registry');
+  }
+  return contract;
+}
+
+export async function deployChunkyItems(): Promise<ChunkyItems> {
+  console.log(`Deploying ChunkyItems to ${network.name} blockchain...`);
+
+  const contractFactory = await ethers.getContractFactory('ChunkyItems');
+  const args = [
+    'ipfs://QmadB7RnpfXSd2JX1e6HZLBKwSkBR3PiXhTmkN9dE5DKur/items/collection.json',
+    100n,
+    (await ethers.getSigners())[0].address,
+    300,
+  ] as const;
+
+  const contract: ChunkyItems = await contractFactory.deploy(...args);
+  await contract.waitForDeployment();
+  const contractAddress = await contract.getAddress();
+  console.log(`ChunkyItems deployed to ${contractAddress}.`);
+
+  if (!isHardhatNetwork()) {
+    console.log('Waiting 10 seconds before verifying contract...');
+    delay(10000);
+    await run('verify:verify', {
+      address: contractAddress,
+      constructorArguments: args,
+      contract: 'contracts/ChunkyItems.sol:ChunkyItems',
+    });
+
+    // Only do on testing, or if whitelisted for production
+    const registry = await getRegistry();
+    await registry.addExternalCollection(contractAddress, args[0]);
+    console.log('Collection added to Singular Registry');
+  }
+  return contract;
+}
+
+// The rest of the methods included on the original file: 
+// - deployBulkWriter
+// - deployCatalogUtils
+// - deployCollectionUtils
+// - deployRenderUtils
+// - deployCatalog
+// - verifyIfNotHardhat
+```
+
+
 Your project structure should look like this at this point:
 
 <FileTree>
@@ -109,7 +203,7 @@ Your project structure should look like this at this point:
     <FileTree.File name="MockRMRKRegistry.sol" />
 </FileTree.Folder>
 <FileTree.Folder name="scripts" defaultOpen>
-    <FileTree.File name="deploy.ts" />
+    <FileTree.File name="deploy-methods.ts" />
     <FileTree.File name="get-gegistry.ts" />
     <FileTree.File name="run-deploy-catalog.ts" />
     <FileTree.File name="run-deploy-utils.ts" />

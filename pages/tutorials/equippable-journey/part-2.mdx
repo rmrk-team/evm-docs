@@ -1,9 +1,6 @@
-import { progress } from 'framer-motion'
-import { Steps, Callout, Tabs } from 'nextra/components'
+import { Steps, Callout } from 'nextra/components'
 
 # Equippable & Composable Journey ( Part 2, Configuration & Minting )
-
-This tutorial is in progress, it will be completed within days. An equivalent working version of the code is available at [RMRK's examples repo](https://github.com/rmrk-team/rmrk-examples/tree/master/contract-examples/chunkies) on Github. Once the tutorial is completed, it will reflect the latest code.
 
 #### User journey context
 
@@ -701,17 +698,84 @@ Item assets added
 Items minted into chunkies
 ```
 
-Congratulations you have just deployed your first composable and equippable collection and minted some NFTs successfully! You can replicate the same steps on a testnet or mainnet already.
+Don't stop the hardhat network yet, we will need it to render the NFTs.
+
+Congratulations you have just deployed your first composable and equippable collection and minted some NFTs successfully! You can replicate the same steps on a testnet or mainnet already by setting the network instead of localhost. These networks are available in configuration files and also in Singular:
+- Testing: `moonbaseAlpha`, `sepolia`, `polygonMumbai`, `baseSepolia`
+- Production: `moonbeam`, `mainnet`, `polygon`, `base`, `astar`, `bsc`
 
 ### Rendering your NFTs
 
-In progress.
+To render your NFTs in a test environment we will use a local hardhat network, deploy everything there and then render it with a utility available in the [RMRK's examples repo](https://github.com/rmrk-team/rmrk-examples/tree/master/contract-examples/react-nextjs-example) on Github. You can also use the same utility to render your NFTs on a testnet or mainnet.
+
+We already have hardhat node running and have deployed our main and utility contracts deployed. The next step is to clone the [RMRK's examples repo](https://github.com/rmrk-team/rmrk-examples/tree/master/contract-examples) repository, go to the `react-nextjs-example` and install dependencies.
+
+Now in the go to the configuration file at `react-nextjs-example/src/app/providers.tsx` and set the right addresses for the utility contracts we deployed earlier: `RMRKEquipRenderUtils`, `RMRKBulkWriter`, `RMRKCollectionUtils` and `RMRKCatalogUtils`.
+
+Run the utility to render the NFTs:
+
+```bash copy
+pnpm dev
+```
+
+Once the process is running you can go to `http://localhost:3001` (the port might change depending on what you are running) and see your NFTs rendered at http://localhost:3001/{NETWORK}/{COLLECTION_ADDRESS}/{ID}. In our case, the network is 31337 (hardat), the collection address is 0x5FbDB2315678afecb367f032d93F642f64180aa3 and we have 5 NFTs with IDs 1 to 5. So you can see them at:
+
+http://localhost:3001/31337/0x5FbDB2315678afecb367f032d93F642f64180aa3/1
+
+
+### Equipping your NFTs
+
+Let's do a final step to actually see the magic of equipping NFTs. Let's add a new script on our chunkies project: `scripts/run-equip.ts` and add the following code to equip 2 items into the first chunky:
+
+```typescript copy
+import * as C from './constants';
+import getDeployedContracts from './get-deployed-contracts';
+
+async function main() {
+  const { chunkies, chunkyItems } = await getDeployedContracts();
+
+  await chunkies.equip({
+    tokenId: 1,
+    childIndex: 0, // Bone is first item
+    assetId: 1, // First parent's asset
+    slotPartId: C.CHUNKY_LEFT_HAND_SLOT_PART_ID,
+    childAssetId: 1, // Bone's asset for left hand
+  });
+  await chunkies.equip({
+    tokenId: 1,
+    childIndex: 1, // Flag is second item
+    assetId: 1, // First parent's asset
+    slotPartId: C.CHUNKY_RIGHT_HAND_SLOT_PART_ID,
+    childAssetId: 4, // Flag's asset for right hand
+  });
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
+
+Now run the script:
+
+```bash copy
+pnpm hardhat run scripts/run-equip.ts --network localhost
+```
+
+If you refresh the renderer you will see the first chunky with a bone on the left hand and a flag on the right hand.
+
+<Callout type="warning">
+  The renderer utility works only for composable and equippable NFTs
+</Callout>
+
 
 </Steps>
 
 ## User journey summary
 
-In progress.
+In this tutorial we learned how to create a composable and equippable collection of NFTs. We learned how to deploy the contracts, configure the catalog, mint NFTs and render them. We also learned how to equip NFTs into other NFTs.
+
+The final code for this tutorial can be found in the [RMRK's examples repo](https://github.com/rmrk-team/rmrk-examples/tree/master/contract-examples/chunkies) on Github. It additionaly includes assets, metadata and a simple unit test demonstrating a few points.
 
 ## Bugs, doubts and help
 
