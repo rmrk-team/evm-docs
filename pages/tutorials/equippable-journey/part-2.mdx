@@ -236,7 +236,7 @@ That's it, compile the contract so typechain gets the updated ABI.
 pnpm compile
 ```
 
-Now let's create our method to mint chunkies on `scripts/deploy.ts`:
+Now let's create our method to mint chunkies on `scripts/deploy-methods.ts`:
 
 
 ```typescript copy
@@ -368,27 +368,17 @@ That's it, we'll have an easier time on scripts. Compile the contract so typecha
 ```bash copy
 pnpm compile
 ```
-Now let's create our method to mint chunkies on `scripts/deploy.ts`. Besides adding all the necessary assets, we will configure that items with equippable group for right hand can be equipped into the right hand slot on Chunkies. We do the same for the left hand. This is necessary to show the intention of groups of assets to be equipped into specific collection and slots. This is the reason we have equippable group ids, so we don't need to do it for each asset.
+Now let's create our method to mint chunkies on `scripts/deploy-methods.ts`. Besides adding all the necessary assets, we will configure that items with equippable group for right hand can be equipped into the right hand slot on Chunkies. We do the same for the left hand. This is necessary to show the intention of groups of assets to be equipped into specific collection and slots. This is the reason we have equippable group ids, so we don't need to do it for each asset.
 
 ```typescript copy
-export async function addItemAssets(items: ChunkyItem, chunkiesAddress: string) {
-  // 1st WAY TO DO IT: Adding assets step by step
-  let tx = await items.addEquippableAssetEntry(
-    C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND, // Equippable group
-    ethers.ZeroAddress, // Catalog address
-    `${C.BASE_IPFS_URI}/items/bone/left.json`, // Metadata URI
-    [], // Part ids, none since this is not meant to receive any equippable and it is not composed
+export async function addItemAssets(items: ChunkyItems, chunkiesAddress: string) {
+  let tx = await items.addHandItemAssets(
+    C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND,
+    C.EQUIPPABLE_GROUP_FOR_ITEMS_RIGHT_HAND,
+    `${C.BASE_IPFS_URI}/items/bone/left.json`, // Asset for left hand
+    `${C.BASE_IPFS_URI}/items/bone/right.json`, // Asset for left hand
   );
-  await tx.wait();
-  tx = await items.addEquippableAssetEntry(
-    C.EQUIPPABLE_GROUP_FOR_ITEMS_RIGHT_HAND, // Equippable group
-    ethers.ZeroAddress, // Catalog address
-    `${C.BASE_IPFS_URI}/items/bone/right.json`, // Metadata URI
-    [], // Part ids, none since this is not meant to receive any equippable and it is not composed
-  );
-  await tx.wait();
 
-  // 2nd WAY TO DO IT: Custom method on items contract
   tx = await items.addHandItemAssets(
     C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND,
     C.EQUIPPABLE_GROUP_FOR_ITEMS_RIGHT_HAND,
@@ -479,7 +469,7 @@ Compile the contract so typechain gets the updated ABI.
 ```bash copy
 pnpm compile
 ```
-Now let's create our method to nest mint items on `scripts/deploy.ts`. See the comments on the code for more details.
+Now let's create our method to nest mint items on `scripts/deploy-methods.ts`. See the comments on the code for more details.
 
 
 ```typescript copy
