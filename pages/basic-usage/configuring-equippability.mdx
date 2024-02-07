@@ -2,17 +2,17 @@ import { Tabs, Callout } from 'nextra/components'
 
 # Configuring-equipability
 
-Equippable & Composable is the most advanced module, as it requires both MultiAsset and Nestable ones. After you have deployed your NFT contract, you may add new equipppable and/or composable assets, which can receive children to be equipped or which can be equipped into a parent. 
+Equippable & Composable is the most advanced module, as it requires both MultiAsset and Nestable ones. After you have deployed your NFT contract, you may add new equippable and/or composable assets. Equippable assets can receive children to be equipped or be equipped into a parent, or both.
 
 
-## Pre-requisites for equipments to be valid
+## Pre-requisites for equipment to be valid
 
 For a token to be equippable there are a series of conditions that need to be met. They are tailored to ensure that only assets from collections meant to be equipped are possible:
 1. The slot must be defined in the catalog and it must be configured so that child collection can use it. 
 2. The parent token must have an asset with slot parts.
 3. The child token must have an asset that is equippable into the parent's slot. This is done through the `equippableGroupId`.
 
-### Equipppable Group Id
+### Equippable Group Id
 
 To better understand the `equippableGroupId` paramater let's consider the following example. Let's say you have a collection of Soldiers and a collection of Weapons. You want to allow the Soldiers to equip the Weapons in either hand. You would need to:
 1. Create a catalog with a slot `WL` for the left hand and a slot `WR` for the right hand. You also configure this slot to be usable by the Weapons collection. This can be achieved by using when creating part with either `addPart` or `addPartList`, or later through `addEquippableAddresses`, `setEquippableAddresses` or `setEquippableToAll`. See the [Catalog section](./catalog) for more details.
