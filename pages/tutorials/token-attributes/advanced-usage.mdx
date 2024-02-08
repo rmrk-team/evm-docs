@@ -1,0 +1,234 @@
+import { Steps, Callout, Tabs, FileTree } from 'nextra/components'
+
+# Advanced usage of on chain token attributes.
+
+#### A contextualized user journey to explore and understand the Token Attributes Repository features
+
+In this journey we will explore how to use the token attributes standard (ERC-7590, in draft). We will continue from the deployed NFT collection in the [previous tutorial](./basic-usage) and see how to do the same operations directly calling the token attributes repository. Additionally, we'll see how to use a single attribute to store many data points, for gas savings.
+
+
+##### The use cases that will be explored are:
+
+- Configuring attributes for different parties, directly calling the token attributes repository.
+- Setting and getting attributes, directly calling the token attributes repository.
+- Using a single attribute to store many data points, for gas savings.
+
+#### User journey context
+
+_We have an NFT collection where each token will represent a character in a game. We want set several attributes from a game contract into a single STATS atrribute so we don't spend so much gas unnecessarily._
+
+<Callout type="warning">
+  This tutorial is a continuation of the [previous tutorial](./basic-usage). If you haven't done so, please follow the steps there first.
+</Callout>
+
+<Steps>
+
+
+### Configuring an attribute
+
+Before setting attributes, you must first configure them. We already know we can do it with the hardhat task:
+
+```bash copy
+pnpm hardhat attributes:configure 0xe020c035e3E6903370A52277257f83B9541712FA Stats 4 0x855dF0303Fec3a56c02fE35d8fb4d5e80A8c79A0 --network polygonMumbai
+```
+
+But we can also do it directly calling the token attributes repository. This is the code that is run in the task (see the full version at `tasks/attributes.ts`). Simply set the right values for `collection`, `attributesKey`, `accessType` and `specificAddress`:
+  
+```typescript copy
+const tokenAttributes = await getAttributesRepository(hre); // Tasks cannot import hardhat, but it is available when defining the action for a task. If running from a script you can do: import hre from 'hardhat';
+
+if (firstTime) {
+  const tx = await tokenAttributes.registerAccessControl(collection, deployer.address, true);
+  await tx.wait();
+}
+
+let tx = await tokenAttributes.manageAccessControl(
+  collection,
+  attributesKey,
+  accessType,
+  specificAddress,
+);
+await tx.wait(); 
+```
+
+### Setting and getting attributes
+
+Now that we have configured the attributes, we can set and get them. We already know that to set and get the attributes we can hardhat tasks:
+
+```bash copy
+# To set:
+pnpm hardhat attributes:set CONTRACT_ADDRESS TOKEN_ID TYPE ATTRIBUTE_NAME ATTRIBUTE_VALUE --network NETWORK
+# To get:
+pnpm hardhat attributes:get CONTRACT_ADDRESS TOKEN_ID TYPE ATTRIBUTE_NAME --network NETWORK
+```
+
+But we can also do it directly calling the token attributes repository. This is the code that is run in the task (see the full version at `tasks/attributes.ts`), Simply set the right values for `type`, `collection`, `tokenId`, `attributesKey` and `value`:
+
+```typescript copy
+const tokenAttributes = await getAttributesRepository(hre);
+let tx: ContractTransactionResponse;
+switch (type) {
+  case 'boolean':
+    tx = await tokenAttributes.setBoolAttribute(
+      collection,
+      tokenId,
+      attributesKey,
+      Boolean(value),
+    );
+    break;
+  case 'int':
+    tx = await tokenAttributes.setUintAttribute(
+      collection,
+      tokenId,
+      attributesKey,
+      parseInt(value),
+    );
+    break;
+  case 'string':
+    tx = await tokenAttributes.setStringAttribute(collection, tokenId, attributesKey, value);
+    break;
+  case 'address':
+    tx = await tokenAttributes.setAddressAttribute(collection, tokenId, attributesKey, value);
+    break;
+  case 'bytes':
+    tx = await tokenAttributes.setBytesAttribute(collection, tokenId, attributesKey, value);
+    break;
+  default:
+    throw new Error('Invalid attribute type');
+}
+await tx.wait();
+```
+
+We can also get the values directly calling the token attributes repository. This is the code that is run in the task (see the full version at `tasks/attributes.ts`), Simply set the right values for `type`, `collection`, `tokenId`, `attributesKey`:
+
+```typescript copy
+const tokenAttributes = await getAttributesRepository(hre);
+switch (type) {
+  case 'boolean':
+    const boolValue = await tokenAttributes.getBoolAttribute(collection, tokenId, attributesKey);
+    console.log(boolValue);
+    break;
+  case 'int':
+    const intValue = await tokenAttributes.getUintAttribute(collection, tokenId, attributesKey);
+    console.log(intValue);
+    break;
+  case 'string':
+    const stringValue = await tokenAttributes.getStringAttribute(
+      collection,
+      tokenId,
+      attributesKey,
+    );
+    console.log(stringValue);
+    break;
+  case 'address':
+    const addressValue = await tokenAttributes.getAddressAttribute(
+      collection,
+      tokenId,
+      attributesKey,
+    );
+    console.log(addressValue);
+    break;
+  case 'bytes':
+    const bytesValue = await tokenAttributes.getBytesAttribute(
+      collection,
+      tokenId,
+      attributesKey,
+    );
+    console.log(bytesValue);
+    break;
+  default:
+    throw new Error('Invalid attribute type');
+}
+```
+
+### Using a single attribute to store many data points, for gas savings
+
+Every write to storage operation in solidity has a fixed cost of 20,000 gas. This means that if you have to store 10 different data points, you will spend 200,000 gas. This can be an important difference in price one some blockchains. Since a single attribute can store up to 32 bytes, you can use it to store many data points. You can do this easily for integers and strings by giving a fixed length to each data point and then concatenating them. In this example we will store several integers in a single attribute.
+
+Let's first see how we could do it in a smart contract. We will use a struct to store the data points and then we will convert it to a single integer to store it in the attribute. This is the struct we will use. If we add up the bits used by each, we get a total of 240 bits, which will fit in a uint256 variable (32 bytes). As you can see on the comments, we can store big enough numbers for what we could need in a game.
+
+```solidity copy
+struct BattleStats {
+    uint24 attack; // Over 16M
+    uint24 defense; // Over 16M
+    uint24 health; // Over 16M
+    uint24 stamina; // Over 16M
+    uint24 maxHealth; // Over 16M
+    uint24 maxStamina; // Over 16M
+    uint16 level; // Over 65k levels
+    uint16 freePoints; // Over 65k
+    uint32 experience; // 4.2 * 10^9
+    uint32 lastStatsUpdate; // Up to year 2106
+}
+```
+
+Now let's see how to merge and store the data points, we use bit shifting to merge the data points into a single integer.
+
+```solidity copy
+function _mergeStats(
+    BattleStats memory stats
+) private pure returns (uint256 mergedStats) {
+    mergedStats = stats.attack;
+    mergedStats |= uint256(stats.defense) << 24; // 24 bits offset
+    mergedStats |= uint256(stats.health) << 48; // 24 bits offset
+    mergedStats |= uint256(stats.stamina) << 72; // 24 bits offset
+    mergedStats |= uint256(stats.maxHealth) << 96; // 24 bits offset
+    mergedStats |= uint256(stats.maxStamina) << 120; // 24 bits offset
+    mergedStats |= uint256(stats.level) << 144; // 24 bits offset
+    mergedStats |= uint256(stats.freePoints) << 160; // 16 bits offset
+    mergedStats |= uint256(stats.experience) << 176; // 16 bits offset
+    mergedStats |= uint256(stats.lastStatsUpdate) << 208; // 32 bits offset
+}
+
+function _storeStats(
+        BattleStats memory stats,
+        address collectionAddress,
+        uint256 tokenId
+    ) private {
+    IERC7508 attributesRepository = IERC7508(0x7E5737fAAA0b5a4C2213Bf5dBF7DA3831783b274); // While in draft, see the right address on tasks/utils.ts. It will later be the same in every network.
+
+    attributesRepository.setUintAttribute(
+          collectionAddress,
+          tokenId,
+          "Stats",
+          _mergeStats(stats)
+    );
+}
+```
+
+To read them we do the opposite, we read the attribute and then we use bit shifting to get the data points back:
+
+```solidity copy
+function getStats(
+        address collectionAddress,
+        uint256 tokenId
+    ) public view returns (BattleStats memory stats) {
+      IERC7508 attributesRepository = IERC7508(0x7E5737fAAA0b5a4C2213Bf5dBF7DA3831783b274);
+
+        uint256 mergedStats = attributesRepository.getUintAttribute(
+            collectionAddress,
+            tokenId,
+            "Stats"
+        );
+        stats.attack = uint24(mergedStats);
+        stats.defense = uint24(mergedStats >> 24);
+        stats.health = uint24(mergedStats >> 48);
+        stats.stamina = uint24(mergedStats >> 72);
+        stats.maxHealth = uint24(mergedStats >> 96);
+        stats.maxStamina = uint24(mergedStats >> 120);
+        stats.level = uint16(mergedStats >> 144);
+        stats.freePoints = uint16(mergedStats >> 160);
+        stats.experience = uint32(mergedStats >> 176);
+        stats.lastStatsUpdate = uint32(mergedStats >> 208);
+    }
+```
+
+You can achieve the same in a script or task, for both setting and getting the attribute. You just need to use bit shifting to merge and unmerge the data points.
+</Steps>
+
+That's it! You can now use the token attributes repository directly to store and retrieve data on chain, you can also use a single attribute to store multiple data points. Remember this is a draft and the final version might have some changes. The full code for this tutorial can be found in the [RMRK's examples repository](https://github.com/rmrk-team/rmrk-examples/token-attributes).
+
+## Bugs, doubts and help
+
+For clarifications, bug reporting or help please open a Github issue or write a message here:
+- **Telegram**: https://t.me/rmrkimpl
