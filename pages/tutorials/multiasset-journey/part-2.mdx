@@ -29,7 +29,7 @@ _After starting their travels, Master and Alice decided to separate and they had
         ![Minting Master's CookBook](/images/tutorials/multiasset-cookbook/1-remix-mint.png)
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, under the `// Journey starts here:` line, add the following code.
+        On your `run-journey.ts` script, under the `// Journey starts here:` line, add the following code.
         ```typescript copy
         // 1. Minting NFTs
         // The ipfs URI points to a JSON file that contains the metadata for the NFT.
@@ -75,7 +75,7 @@ You can use these 3 IPFS URIs for the metadata:
         ![Master adds assets to the collection](/images/tutorials/multiasset-cookbook/2-remix-add-assets.png)
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, let's add the code to add the 3 assets to the collection.
+        On your `run-journey.ts` script, let's add the code to add the 3 assets to the collection.
         ```typescript copy
         // 2. Recipes creation - Adding assets to the collection
         const assets = [
@@ -124,7 +124,7 @@ Now Master will add the 3 recipes (assets) to his cookbook.
         ![Master adds assets to his cookbok](/images/tutorials/multiasset-cookbook/3-remix-add-asset-to-token.png)
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, let's add the code to add the 3 assets to the master's cookbook.
+        On your `run-journey.ts` script, let's add the code to add the 3 assets to the master's cookbook.
         ```typescript copy
         // 3. Recipes creation - Adding assets to a token
         const masterCookbookId = 1; // We know this because it is the second minted token, in a production environment you would get it from the emitted Transfer event, since there might be other tokens minted in between.
@@ -181,7 +181,7 @@ Our ready to use Pre-Mint implementations, allow for the owner or a contributor 
         ![Adding Alice as contributor](/images/tutorials/multiasset-cookbook/4-remix-manage-contributor.png)
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, let's add the code to add Alice as a contributor. Make sure to update Alice's address with the one you are using.
+        On your `run-journey.ts` script, let's add the code to add Alice as a contributor. Make sure to update Alice's address with the one you are using.
         ```typescript copy
         // 4. Managing Contributors
         tx = await cookbook.connect(master).manageContributor(alice.address, true);
@@ -216,7 +216,7 @@ You can use these 2 IPFS URIs for the metadata:
         ![Alice adds assets to her cookbook](/images/tutorials/multiasset-cookbook/5-remix-add-asset-to-token.png)
     </Tabs.Tab>
     <Tabs.Tab>
-        In your `journey.ts` script, let's have Alice add new assets and then add them to her cookbook.
+        In your `run-journey.ts` script, let's have Alice add new assets and then add them to her cookbook.
         ```typescript copy
         // 5. Alice Creates her cookbook - Minting a new token and adding assets to it
         const assetsByAlice = [
@@ -295,7 +295,7 @@ _During his travel, Master created a recipe dedicated to his student and he deci
         ![Alice accepts the asset](/images/tutorials/multiasset-cookbook/6-remix-accept-asset.png)
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, let's have Master add a new asset and add it to Alice's cookbook. Then let's have Alice accept it.
+        On your `run-journey.ts` script, let's have Master add a new asset and add it to Alice's cookbook. Then let's have Alice accept it.
         ```typescript copy
         // 6. Collaboration - Accepting assets proposed by others
         tx = await cookbook
@@ -364,7 +364,7 @@ The asset is auto accepted since the user (Alice) adding it, owns the token.
         ![Alice adds asset to her cookbok, replacing the old one](/images/tutorials/multiasset-cookbook/7-remix-add-asset-to-token.png)
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, let's have Alice add a new asset and add it to her cookbook, replacing the asset from her Master. 
+        On your `run-journey.ts` script, let's have Alice add a new asset and add it to her cookbook, replacing the asset from her Master.
         ```typescript copy
         // 7. Alice improves recipe - Asset replacement
         tx = await cookbook
@@ -441,7 +441,7 @@ You can use these 2 IPFS URIs for the metadata:
         4. Change to Alice's account and accept them. Initially asset Id 8 will be at index 0, after accepting it now asset Id 9 will also have index 0.
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, let's have Master add new assets and then add them to Alice's and his own cookbook.
+        On your `run-journey.ts` script, let's have Master add new assets and then add them to Alice's and his own cookbook.
         ```typescript copy
         // 8. Master and Alice collaboration - Proposing assets to a token
         const assetsByMasterToAlice = [
@@ -536,7 +536,7 @@ _Fortunately Master's recipes will be available for the next generations, but wi
         We will omit this step so you can see the [final result on Singular](https://dev.singular.app/collectibles/moonbase-alpha/0xb8C5583AEC1F897bBac8C6D9f8CDAeD14444C08e).
     </Tabs.Tab>
     <Tabs.Tab>
-        On your `journey.ts` script, master burns his token. We will leave it commented so you can see the [final result on Singular](https://dev.singular.app/collectibles/moonbase-alpha/0x473b8FC2483c516AadB8d365027A8C2eB8700A39) after running the script.
+        On your `run-journey.ts` script, master burns his token. We will leave it commented so you can see the [final result on Singular](https://dev.singular.app/collectibles/moonbase-alpha/0x473b8FC2483c516AadB8d365027A8C2eB8700A39) after running the script.
         ```typescript copy
         // 9. Master retires - Token burning with related assets
         // await cookbook.connect(master).burn(masterCookbookId);
@@ -545,9 +545,9 @@ _Fortunately Master's recipes will be available for the next generations, but wi
         You can now run the journey. First give it a try using local hardhat network, then run it on the testing network you are using.
         ```bash copy
         // If you don't specify a network it will use the local hardhat network:
-        yarn hardhat run scripts/journey.ts
+        yarn hardhat run scripts/run-journey.ts
         // Or you can specify the network:
-        yarn hardhat run scripts/journey.ts --network moonbaseAlpha
+        yarn hardhat run scripts/run-journey.ts --network moonbaseAlpha
         ```
         You should see the following output (except for the addresses):
         ```bash
