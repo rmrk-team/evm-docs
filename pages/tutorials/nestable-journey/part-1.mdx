@@ -157,9 +157,9 @@ Remix requires no installation, but Hardhat version will take care of verifying 
 
         We can do every step without further coding, by using the deployed contracts section on Remix, as we did on [MultiAsset Journey](./multiasset-journey/part-2). However, since there are several operations and some of involve reading the state and finding the children indexes, we will use a script to interact with the contracts.
         
-        * Create a `journey.ts` file under the `scripts` folder.  We will start by importing some libraries and our method to get the contracts. All the code will run under the `main` function. We will simply log the account and the addresses of the kingdom and soldier contracts, to make sure they are as expected.
+        * Create a `run-journey.ts` file under the `scripts` folder.  We will start by importing some libraries and our method to get the contracts. All the code will run under the `main` function. We will simply log the account and the addresses of the kingdom and soldier contracts, to make sure they are as expected.
         
-        * Add the following code to the `journey.ts` file:
+        * Add the following code to the `run-journey.ts` file:
 
         ```typescript copy
         import {ethers} from 'ethers'
@@ -265,8 +265,12 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             <FileTree.File name="MockRMRKRegistry.sol" />
         </FileTree.Folder>
         <FileTree.Folder name="scripts">
-            <FileTree.File name="deploy.ts" />
-            <FileTree.File name="getRegistry.ts" />
+            <FileTree.File name="deploy-methods.ts" />
+            <FileTree.File name="get-gegistry.ts" />
+            <FileTree.File name="run-deploy-catalog.ts" />
+            <FileTree.File name="run-deploy-utils.ts" />
+            <FileTree.File name="run-deploy.ts" />
+            <FileTree.File name="utils.ts" />
         </FileTree.Folder>
         <FileTree.File name="hardhat.config.ts" />
         <FileTree.File name="..." />
@@ -284,12 +288,28 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             - Max supply: 1000
             - Royalty receipient: Leave empty to use the same address as the deployer, or set a custom address.
             - Royalty percentage: 3%
+            - Enable the "Use 2 scripts" option. This will allow us to reuse the deploy method.
 
             Your screen configuration panel should look like this:
             ![Wizard Configuration](/images/tutorials/nestable-kingdom/0-kingdom-deploy-config.png)
 
-        ### Download the deployment script   
-        Download the script and place it in the `scripts` folder. Since we will have 2 contracts, let's rename this one to `deployKingdom.ts` and remove the default one from the template: `deploy.ts`.
+        ### Copy the deployment code
+        Copy the code from the top window into `scripts/deploy-methods.ts`. Some imports will be duplicated, remove them. The merged imports should look like this:
+        ```typescript copy
+        import { ethers, run, network } from 'hardhat';
+        import { delay, isHardhatNetwork } from './utils';
+        import {
+            Kingdom,
+            RMRKBulkWriter,
+            RMRKCatalogImpl,
+            RMRKCatalogUtils,
+            RMRKCollectionUtils,
+            RMRKEquipRenderUtils,
+        } from '../typechain-types';
+        import { getRegistry } from './get-gegistry';
+        ```
+
+        Copy the code from the bottom window into `scripts/run-deploy.ts`, replacing the original contents. This will be the main script to deploy the contracts.
 
         <FileTree>
         <FileTree.Folder name="contracts">
@@ -297,8 +317,12 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             <FileTree.File name="MockRMRKRegistry.sol" />
         </FileTree.Folder>
         <FileTree.Folder name="scripts" defaultOpen>
-            <FileTree.File name="deployKingdom.ts" />
-            <FileTree.File name="getRegistry.ts" />
+            <FileTree.File name="deploy-methods.ts" />
+            <FileTree.File name="get-gegistry.ts" />
+            <FileTree.File name="run-deploy-catalog.ts" />
+            <FileTree.File name="run-deploy-utils.ts" />
+            <FileTree.File name="run-deploy.ts" />
+            <FileTree.File name="utils.ts" />
         </FileTree.Folder>
         <FileTree.File name="hardhat.config.ts" />
         <FileTree.File name="..." />
@@ -326,12 +350,43 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             - Max supply: 1000
             - Royalty receipient: Leave empty to use the same address as the deployer, or set a custom address.
             - Royalty percentage: 3%
+            - Enable the "Use 2 scripts" option. This will allow us to reuse the deploy method.
 
             Your screen configuration panel should look like this:
             ![Wizard Configuration Army](/images/tutorials/nestable-kingdom/0-army-deploy-config.png)
 
-        ### Download the deployment script   
-        Download the script and place it in the `scripts` folder. Rename it to `deployArmy.ts`.
+        ### Copy the deployment code
+        Copy the code from the top window into `scripts/deploy-methods.ts`. Some imports will be duplicated, remove them. The merged imports should look like this:
+        ```typescript copy
+        import { ethers, run, network } from 'hardhat';
+        import { delay, isHardhatNetwork } from './utils';
+        import {
+            Army,
+            Kingdom,
+            RMRKBulkWriter,
+            RMRKCatalogImpl,
+            RMRKCatalogUtils,
+            RMRKCollectionUtils,
+            RMRKEquipRenderUtils,
+        } from '../typechain-types';
+        import { getRegistry } from './get-gegistry';
+        ```
+
+        Add the import and the call from the bottom scripts into `scripts/run-deploy.ts`. It should now look like this:
+
+        ```typescript copy
+        import { deployKingdom, deployArmy } from './deploy-methods';
+
+        async function main() {
+            await deployKingdom();
+            await deployArmy();
+        }
+
+        main().catch((error) => {
+            console.error(error);
+            process.exitCode = 1;
+        });
+        ```
 
         ### Prepare Soldier contract
 
@@ -355,29 +410,45 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             - Max supply: 1000
             - Royalty receipient: Leave empty to use the same address as the deployer, or set a custom address.
             - Royalty percentage: 3%
+            - Enable the "Use 2 scripts" option. This will allow us to reuse the deploy method.
 
             Your screen configuration panel should look like this:
             ![Wizard Configuration Soldiers](/images/tutorials/nestable-kingdom/0-soldiers-deploy-config.png)
 
-        ### Download the deployment script   
-        Download the script and place it in the `scripts` folder. Rename it to `deploySoldier.ts`.
+       ### Copy the deployment code
+        Copy the code from the top window into `scripts/deploy-methods.ts`. Some imports will be duplicated, remove them. The merged imports should look like this:
+        ```typescript copy
+        import { ethers, run, network } from 'hardhat';
+        import { delay, isHardhatNetwork } from './utils';
+        import {
+            Army,
+            Kingdom,
+            RMRKBulkWriter,
+            RMRKCatalogImpl,
+            RMRKCatalogUtils,
+            RMRKCollectionUtils,
+            RMRKEquipRenderUtils,
+            Soldier,
+        } from '../typechain-types';
+        import { getRegistry } from './get-gegistry';
+        ```
 
-        <FileTree>
-        <FileTree.Folder name="contracts" defaultOpen>
-            <FileTree.File name="Army.sol" />
-            <FileTree.File name="Kingdom.sol" />
-            <FileTree.File name="MockRMRKRegistry.sol" />
-            <FileTree.File name="Soldier.sol" />
-        </FileTree.Folder>
-        <FileTree.Folder name="scripts" defaultOpen>
-            <FileTree.File name="deployArmy.ts" />
-            <FileTree.File name="deployKingdom.ts" />
-            <FileTree.File name="deploySoldier.ts" />
-            <FileTree.File name="getRegistry.ts" />
-        </FileTree.Folder>
-        <FileTree.File name="hardhat.config.ts" />
-        <FileTree.File name="..." />
-        </FileTree>
+        Add the import and the call from the bottom scripts into `scripts/run-deploy.ts`. It should now look like this:
+
+        ```typescript copy
+        import { deployKingdom, deployArmy, deploySoldier } from './deploy-methods';
+
+        async function main() {
+            await deployKingdom();
+            await deployArmy();
+            await deploySoldier();
+        }
+
+        main().catch((error) => {
+            console.error(error);
+            process.exitCode = 1;
+        });
+        ```
 
         ### Prepare the environment private keys
 
@@ -391,10 +462,12 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             <FileTree.File name="Soldier.sol" />
         </FileTree.Folder>
         <FileTree.Folder name="scripts">
-            <FileTree.File name="deployArmy.ts" />
-            <FileTree.File name="deployKingdom.ts" />
-            <FileTree.File name="deploySoldier.ts" />
-            <FileTree.File name="getRegistry.ts" />
+            <FileTree.File name="deploy-methods.ts" />
+            <FileTree.File name="get-gegistry.ts" />
+            <FileTree.File name="run-deploy-catalog.ts" />
+            <FileTree.File name="run-deploy-utils.ts" />
+            <FileTree.File name="run-deploy.ts" />
+            <FileTree.File name="utils.ts" />
         </FileTree.Folder>
         <FileTree.File name="hardhat.config.ts" />
         <FileTree.File name=".env" />
@@ -415,96 +488,44 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         yarn hardhat compile
         ```
         
-        ### Deploy the Kingdom:
+        ### Deploy the 3 contracts:
         ```bash copy
-        yarn hardhat run scripts/deployKingdom.ts --network {NETWORK}
+        yarn hardhat run scripts/run-deploy.ts --network {NETWORK}
         ```
 
         - Available testing networks: `moonbaseAlpha`, `sepolia`, `polygonMumbai`, `baseGoerli`
         - Available production networks: `moonbeam`, `mainnet`, `polygon`, `base`, `astar`, `bsc`
+        - You can also run a local network with `yarn hardhat node` and then using `--network localhost` or simply omit the network parameter so hardhat creates a local network which will exist only during the script execution.
         
-        After deploy you will see something like this (you may also see a message about the contract having been verified already):
-        
-        ```bash
-        Deploying Kingdom to polygonMumbai blockchain...
-        Kingdom deployed to 0x1199844a6d09240cbaEb0fd0Ba64Fb089cd23Ae2.
-        Collection added to Singular Registry
-        Nothing to compile
-        No need to generate any newer typings.
-        Successfully submitted source code for contract
-        contracts/Kingdom.sol:Kingdom at 0x1199844a6d09240cbaEb0fd0Ba64Fb089cd23Ae2
-        for verification on the block explorer. Waiting for verification result...
-
-        Successfully verified contract Kingdom on Etherscan.
-        https://mumbai.polygonscan.com/address/0x1199844a6d09240cbaEb0fd0Ba64Fb089cd23Ae2#code
-        Done in 32.98s
-        ```
-        
-        ### Deploy the Army to the same network:
-        ```bash copy
-        yarn hardhat run scripts/deployArmy.ts --network {NETWORK}
-        ```
-
-        After deploy you will see something like this (you may also see a message about the contract having been verified already):
+        After deploy you will see something like this. If you are not using a hardhat network, you will also see messages about verification of the contracts and their registration in Singular.
         
         ```bash
-        Deploying Army to polygonMumbai blockchain...
-        Army deployed to 0x2504e3Dba8094B03eA4AD92fd50cCfdf4D2F9043.
-        Collection added to Singular Registry
-        Nothing to compile
-        No need to generate any newer typings.
-        Successfully submitted source code for contract
-        contracts/Army.sol:Army at 0x2504e3Dba8094B03eA4AD92fd50cCfdf4D2F9043
-        for verification on the block explorer. Waiting for verification result...
-
-        Successfully verified contract Army on Etherscan.
-        https://mumbai.polygonscan.com/address/0x2504e3Dba8094B03eA4AD92fd50cCfdf4D2F9043#code
-        Done in 25.89s
+        Deploying Kingdom to hardhat blockchain...
+        Kingdom deployed to 0x5FbDB2315678afecb367f032d93F642f64180aa3.
+        Deploying Army to hardhat blockchain...
+        Army deployed to 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512.
+        Deploying Soldier to hardhat blockchain...
+        Soldier deployed to 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0.
         ```
 
-        ### Deploy the Soldier to the same network:
-        ```bash copy
-        yarn hardhat run scripts/deploySoldier.ts --network {NETWORK}
-        ```
-
-        After deploy you will see something like this (you may also see a message about the contract having been verified already):
-        
-        ```bash
-        Deploying Soldier to polygonMumbai blockchain...
-        Soldier deployed to 0x3FaA4C4824790a48c67888cc54FfE5b3C729f870.
-        Collection added to Singular Registry
-        Nothing to compile
-        No need to generate any newer typings.
-        Successfully submitted source code for contract
-        contracts/Soldier.sol:Soldier at 0x3FaA4C4824790a48c67888cc54FfE5b3C729f870
-        for verification on the block explorer. Waiting for verification result...
-
-        Successfully verified contract Soldier on Etherscan.
-        https://mumbai.polygonscan.com/address/0x3FaA4C4824790a48c67888cc54FfE5b3C729f870#code
-        Done in 29.35s.
-        ```
-        
         Congratulations! You have deployed your first **Nestable** contracts. 
 
         <Callout type="info">
-            They are also already verified and registered in [Singular dev](https://dev.singular.app).
+            If you used a blockchain different to hardhat, all contracts are now also already verified and registered in [Singular dev](https://dev.singular.app).
         </Callout>
-
 
         ### Prepare contract interaction scripts
 
         To interact with our smart contract we will need to create an instance of the Kingdom and Soldier and attach the deployed addresses. Since we might need this several times, let's create a script to get the instance. 
         
-        Create a `getContracts.ts` file under the `scripts` folder and add the following code, replacing the kingdom and soldier addresses for the one you just deployed. This will return intances of `Kingdom`, `Army` and `Soldier` that we can use to interact with the contracts. When running unit tests in the local hardhat network, it will create deploy new instances, otherwise it will point to the deployed ones.
+        Create a `get-contracts.ts` file under the `scripts` folder and add the following code, replacing the kingdom and soldier addresses for the one you just deployed. This will return intances of `Kingdom`, `Army` and `Soldier` that we can use to interact with the contracts. When running unit tests in the local hardhat network, it will create deploy new instances, otherwise it will point to the deployed ones.
 
         ```typescript copy
         import { ethers } from 'hardhat';
         import { Kingdom, Army, Soldier } from '../typechain-types';
-        import deployKingdom from './deployKingdom';
-        import deployArmy from './deployArmy';
-        import deploySoldier from './deploySoldier';
+        import { deployKingdom, deployArmy, deploySoldier } from './deploy-methods';
 
-        export async function getContracts(): Promise<{ kingdom: Kingdom; army: Army; soldier: Soldier }> {
+        export default async function getContracts(): Promise<{ kingdom: Kingdom; army: Army; soldier: Soldier }> {
             let kingdom: Kingdom;
             let army: Army;
             let soldier: Soldier;
@@ -537,13 +558,13 @@ Remix requires no installation, but Hardhat version will take care of verifying 
         Make sure you replace the 3 contract addresses for the ones you just deployed.
         </Callout>
         
-        * Create a `journey.ts` file under the `scripts` folder.  We will start by importing some libraries and our method to get the contracts. All the code will run under the `main` function. We will simply log the account and the addresses of the kingdom and soldier contracts, to make sure they are as expected.
+        * Create a `run-journey.ts` file under the `scripts` folder.  We will start by importing some libraries and our method to get the contracts. All the code will run under the `main` function. We will simply log the account and the addresses of the kingdom and soldier contracts, to make sure they are as expected.
         
-        Add the following code to the `journey.ts` file:
+        Add the following code to the `run-journey.ts` file:
 
         ```typescript copy
         import { ethers, network } from 'hardhat';
-        import { getContracts } from './getContracts';
+        import getContracts from './get-contracts';
 
         async function main(): Promise<void> {
         console.log(`Running kingdom journey on ${network.name} blockchain...`);
@@ -575,11 +596,14 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             <FileTree.File name="Soldier.sol" />
         </FileTree.Folder>
         <FileTree.Folder name="scripts" defaultOpen>
-            <FileTree.File name="deployArmy.ts" />
-            <FileTree.File name="deployKingdom.ts" />
-            <FileTree.File name="deploySoldier.ts" />
-            <FileTree.File name="getRegistry.ts" />
-            <FileTree.File name="journey.ts" />
+            <FileTree.File name="deploy-methods.ts" />
+            <FileTree.File name="get-contracts.ts" />
+            <FileTree.File name="get-gegistry.ts" />
+            <FileTree.File name="run-deploy-catalog.ts" />
+            <FileTree.File name="run-deploy-utils.ts" />
+            <FileTree.File name="run-deploy.ts" />
+            <FileTree.File name="utils.ts" />
+            <FileTree.File name="run-journey.ts" />
         </FileTree.Folder>
         <FileTree.File name="hardhat.config.ts" />
         <FileTree.File name=".env" />
@@ -588,19 +612,21 @@ Remix requires no installation, but Hardhat version will take care of verifying 
        
        ### Run the script
        
-       You can safely run it on any network different to hardhat, since there will be no interactions. Running on hardhat will use the default accounts so let's use `polygonMumbai`:
+        You can safely run it on any network different to hardhat, since there will be no interactions. Running on hardhat will use the default accounts so let's use `polygonMumbai`:
         ```bash copy
-        yarn hardhat run scripts/journey.ts --network polygonMumbai
+        yarn hardhat run scripts/run-journey.ts --network polygonMumbai
         ```
         You should see a similar output:
         ```bash
-        Running kingdom journey on polygonMumbai blockchain...
-        Deploying contracts with the account: 0x855dF0303Fec3a56c02fE35d8fb4d5e80A8c79A0
-        Using Kingdom deployed at 0x1199844a6d09240cbaEb0fd0Ba64Fb089cd23Ae2.
-        Using Army deployed at 0x2504e3Dba8094B03eA4AD92fd50cCfdf4D2F9043..
-        Using Soldier deployed at 0x3FaA4C4824790a48c67888cc54FfE5b3C729f870.
-        Done in 2.79s.
+        Running kingdom journey on hardhat blockchain...
+        Running journey with account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+        Using Kingdom deployed at 0x5FbDB2315678afecb367f032d93F642f64180aa3
+        Using Army deployed at 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+        Using Soldier deployed at 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0
+        Done in 2.06s.
         ```
+
+        If you run it on a local network, it will deploy new instances of the contracts and return their addresses. If you run it on a testnet or mainnet, it will point to the deployed contracts.
         </Steps>
     </Tabs.Tab>
 </Tabs>

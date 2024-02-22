@@ -27,7 +27,7 @@ The first action was to create the two kingdoms.
     We will run the journey only at the end, so we do not need to comment past steps or add multiple scripts.
 </Callout>
 
-On your `journey.ts` script, under the `// Journey starts here:` line, add the following code.
+On your `run-journey.ts` script, under the `// Journey starts here:` line, add the following code.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -82,7 +82,7 @@ On your `journey.ts` script, under the `// Journey starts here:` line, add the f
 
 After that, the Wizard decided to create the armies and did it by making them appear directly in their respective kingdoms. Since armies are trusted among the kingdoms, we will first configure auto acceptance, so the `acceptChild` method doesn't need to be called. That means every NFT from the the Army collection, which is sent to any Kingdom NFT, will be automatically accepted.
 
-On your `journey.ts` script, let's add the code to nest mint the armies.
+On your `run-journey.ts` script, let's add the code to nest mint the armies.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -143,7 +143,7 @@ On your `journey.ts` script, let's add the code to nest mint the armies.
 
 Just as before, we will enable auto acceptance for Soldiers added to Armies. Then we will proceed to nest mint the Soldiers into the different Armies.
 
-On your `journey.ts` script, let's add the code to nest mint the soldiers.
+On your `run-journey.ts` script, let's add the code to nest mint the soldiers.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -206,7 +206,7 @@ The two Kingdoms have been created and populated, but the wizard isn't happy. He
 So he decided to re-balance these armies a bit. He did so by removing 5 soldiers from the third one and assigning them soldiers to the first one.
 
 
-On your `journey.ts` script, let's add the code to transfer the soldiers from one army to the other.
+On your `run-journey.ts` script, let's add the code to transfer the soldiers from one army to the other.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -280,7 +280,7 @@ A soldier, after coming back from an exploration mission, had contracted a myste
 
 Several days passed and the soldier's health didn't get any better and finally, after 2 weeks of suffering, the soldier died. The wizard immediately decided to burn the body to contain the infection...
 
-On your `journey.ts` script, let's add the code to transfer a child soldier to the wizard and then burn it.
+On your `run-journey.ts` script, let's add the code to transfer a child soldier to the wizard and then burn it.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -349,7 +349,7 @@ On your `journey.ts` script, let's add the code to transfer a child soldier to t
 
 But this wasn't enough. The infection has already spread throughout the second army. A decision had to be made. The sad wizard decided to push the entire army away to an isolated place within the kingdom, including every object and thing related to it, and this was a wise choice.
 
-On your `journey.ts` script, let's add the code to transfer a child army to the wizard and then burn it.
+On your `run-journey.ts` script, let's add the code to transfer a child army to the wizard and then burn it.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -399,7 +399,7 @@ On your `journey.ts` script, let's add the code to transfer a child army to the 
 The entire army died before a month passed and the wizard burned every man and object to prevent the plague to resurface and do more damage to the kingdom.
 
 
-On your `journey.ts` script, let's add the code to burn the army.
+On your `run-journey.ts` script, let's add the code to burn the army.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -433,7 +433,7 @@ On your `journey.ts` script, let's add the code to burn the army.
 
 The wise wizard realized that other soldiers with any kind of illness could arrive to any of the armies and infect them. So he decided to stop accepting directly every new soldier. He did so by removing the auto acceptance from the armies.
 
-On your `journey.ts` script, let's add the code to remove the auto acceptance of soldiers into the armies.
+On your `run-journey.ts` script, let's add the code to remove the auto acceptance of soldiers into the armies.
 
 <Tabs items={['Remix', 'Hardhat' ]}> 
     <Tabs.Tab>
@@ -494,9 +494,9 @@ We can now run the full journey:
     You can now run the journey. First give it a try using local hardhat network, then run it on the testing network you are using.
     ```bash copy
     // If you don't specify a network it will use the local hardhat network:
-    yarn hardhat run scripts/journey.ts
+    yarn hardhat run scripts/run-journey.ts
     // Or you can specify the network:
-    yarn hardhat run scripts/journey.ts --network polygonMumbai
+    yarn hardhat run scripts/run-journey.ts --network polygonMumbai
     ```
 
     You should see the following output (except for the addresses):

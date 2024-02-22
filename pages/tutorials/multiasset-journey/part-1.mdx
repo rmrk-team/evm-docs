@@ -126,9 +126,9 @@ Remix requires no installation, but Hardhat version will take care of verifying 
             - Max supply: 100
             - Royalty receipient: Leave empty to use the same address as the deployer, or set a custom address.
             - Royalty percentage: 5%
+            - Enable the "Use 2 scripts" option. This will allow us to reuse the deploy method.
             Your screen configuration panel should look like this:
             ![Wizard Configuration](/images/tutorials/multiasset-cookbook/wizard-deploy-script.png)
-            - Enable the "Use 2 scripts" option. This will allow us to reuse the deploy method.
 
         ### Copy the deployment code
         Copy the code from the top window into `scripts/deploy-methods.ts`. Some imports will be duplicated, remove them. The merged imports should look like this:
@@ -146,7 +146,7 @@ import {
 import { getRegistry } from './get-gegistry';
         ```
 
-        Copy the code from the bottom window into `scripts/run-deploy.ts`. This will be the main script to deploy the contract.
+        Copy the code from the bottom window into `scripts/run-deploy.ts`, replacing the original contents. This will be the main script to deploy the contract.
 
         <FileTree>
         <FileTree.Folder name="contracts">
