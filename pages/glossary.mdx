@@ -14,10 +14,10 @@ A common good repository existing in every blockchain at the same address, which
 A Catalog defines fixed and/or slot parts to be used in the context of composable and equippable NFTs. A Catalog can be used by multiple collections, for example multiple characters using the same set of slots parts. A collection can use multiple Catalogs, for example, one for image assets and another one for 3D model assets.
 
 ## Composable
-An asset that be composed of multiple fixed parts. This is specially useful when picking traits dynamically on mint. The fixed parts are defined in the Catalog. Composable NFT's are possible thanks to [RMRK's Composable & Equippable](./composable-equippable) standard, defined in [ERC-6220](https://eips.ethereum.org/EIPS/eip-6220).
+An asset that is composed of multiple fixed parts. This is especially useful when picking traits dynamically on mint. The fixed parts are defined in the Catalog. Composable NFT's are possible thanks to [RMRK's Composable & Equippable](./composable-equippable) standard, defined in [ERC-6220](https://eips.ethereum.org/EIPS/eip-6220).
 
 ## Direct owner
-In the context of a Nestable NFTs, the direct owner is the closest owner of an NFT, it can be another NFT, a smart contract or an EoA. For instance, if wallet X owns NFT A, which in turns owns NFT B, which in turns owns NFT C, the direct owner for C is B, for B is A and for A is X.
+In the context of Nestable NFTs, the direct owner is the closest owner of an NFT. Ot can be another NFT, a smart contract or an EoA. For instance, if wallet X owns NFT A, which in turn owns NFT B, which in turn owns NFT C, the direct owner for C is B, for B is A and for A is X.
 
 ## Emotes Repository
 A common good repository existing in every blockchain at the [same address](https://blockscan.com/address/0x3110735F0b8e71455bAe1356a33e428843bCb9A1), which allows any address to send emojis to any NFT. Events are emitted on every action so an indexer can have a full state of the emojis of an NFT at any time. This is possible thanks to RMRK's [Token Emotes Repository](./emotable), defined in [ERC-7409](https://eips.ethereum.org/EIPS/eip-7409).
@@ -26,10 +26,10 @@ A common good repository existing in every blockchain at the [same address](http
 Externally Owned Accounts are the most common type of blockchain account that gives us direct control. These accounts are created using private keys. The associated key gives you a unique signature and access to the blockchain. You can use it to send and receive transactions and interact with applications.
 
 ## Equippable Group
-When creating an equippable asset, you must assign an equippable group to it. The same group must be used for all assets meant to be equipped into a combination of parent and slot. This group is then used to define that all assets having it, can be equipped into a specific parent and slot.
+When creating an equippable asset, you must assign an equippable group to it. The same group must be used for all assets meant to be equipped into a combination parent at a specific slot. This group is then used to define that all assets having it, can be equipped into a specific parent and slot.
 
 ## Equippable
-The equippable standard is build on top of the MultiAsset and Nestable Standards. Assets can be configured on parents to receive equipments using slot parts. They can also be configured on children to be equipped into a parent asset at a specific slot part using equippable groups. The validity and the state of an equipment is stored on chain. This is possible thanks to [RMRK's Composable & Equippable](./composable-equippable) standard, defined in [ERC-6220](https://eips.ethereum.org/EIPS/eip-6220).
+The equippable standard is built on top of the MultiAsset and Nestable Standards. Assets can be configured on parents to receive equipments using slot parts. They can also be configured on children to be equipped into a parent asset at a specific slot part using equippable groups. The validity and the state of an equipment is stored on chain. This is possible thanks to [RMRK's Composable & Equippable](./composable-equippable) standard, defined in [ERC-6220](https://eips.ethereum.org/EIPS/eip-6220).
 
 ## ERC-20 Holder
 An NFT which can receive, hold and transfer ERC-20 tokens. This is possible thanks to RMRK's [ERC-20 Holder](./erc20holder) standard, defined in [ERC-7590](https://eips.ethereum.org/EIPS/eip-7590).
