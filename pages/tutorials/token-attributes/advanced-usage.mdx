@@ -62,10 +62,9 @@ pnpm hardhat attributes:set CONTRACT_ADDRESS TOKEN_ID TYPE ATTRIBUTE_NAME ATTRIB
 pnpm hardhat attributes:get CONTRACT_ADDRESS TOKEN_ID TYPE ATTRIBUTE_NAME --network NETWORK
 ```
 
-But we can also do it directly calling the token attributes repository. This is the code that is run in the task (see the full version at `tasks/attributes.ts`), Simply set the right values for `type`, `collection`, `tokenId`, `attributesKey` and `value`:
+But we can also do it directly calling the token attributes repository. This is the code that is run in the task (see the full version at `tasks/attributes.ts`). Simply set the right values for `type`, `collection`, `tokenId`, `attributesKey` and `value`:
 
 ```typescript copy
-const tokenAttributes = await getAttributesRepository(hre);
 let tx: ContractTransactionResponse;
 switch (type) {
   case 'boolean':
@@ -76,8 +75,16 @@ switch (type) {
       Boolean(value),
     );
     break;
-  case 'int':
+  case 'uint':
     tx = await tokenAttributes.setUintAttribute(
+      collection,
+      tokenId,
+      attributesKey,
+      parseInt(value),
+    );
+    break;
+  case 'int':
+    tx = await tokenAttributes.setIntAttribute(
       collection,
       tokenId,
       attributesKey,
@@ -99,6 +106,8 @@ switch (type) {
 await tx.wait();
 ```
 
+
+
 We can also get the values directly calling the token attributes repository. This is the code that is run in the task (see the full version at `tasks/attributes.ts`), Simply set the right values for `type`, `collection`, `tokenId`, `attributesKey`:
 
 ```typescript copy
@@ -106,36 +115,34 @@ const tokenAttributes = await getAttributesRepository(hre);
 switch (type) {
   case 'boolean':
     const boolValue = await tokenAttributes.getBoolAttribute(collection, tokenId, attributesKey);
-    console.log(boolValue);
-    break;
+    return boolValue;
+  case 'uint':
+    const uintValue = await tokenAttributes.getUintAttribute(collection, tokenId, attributesKey);
+    return uintValue;
   case 'int':
-    const intValue = await tokenAttributes.getUintAttribute(collection, tokenId, attributesKey);
-    console.log(intValue);
-    break;
+    const intValue = await tokenAttributes.getIntAttribute(collection, tokenId, attributesKey);
+    return intValue;
   case 'string':
     const stringValue = await tokenAttributes.getStringAttribute(
       collection,
       tokenId,
       attributesKey,
     );
-    console.log(stringValue);
-    break;
+    return stringValue;
   case 'address':
     const addressValue = await tokenAttributes.getAddressAttribute(
       collection,
       tokenId,
       attributesKey,
     );
-    console.log(addressValue);
-    break;
+    return addressValue;
   case 'bytes':
     const bytesValue = await tokenAttributes.getBytesAttribute(
       collection,
       tokenId,
       attributesKey,
     );
-    console.log(bytesValue);
-    break;
+    return bytesValue;
   default:
     throw new Error('Invalid attribute type');
 }
@@ -387,6 +394,17 @@ Getting stats for token 1 in 0xe020c035e3E6903370A52277257f83B9541712FA
 </Steps>
 
 That's it! You can now use the token attributes repository directly to store and retrieve data on chain, you can also use a single attribute to store multiple data points both from a script or a smart contract. Remember this is a draft and the final version might have some changes. The full code for this tutorial can be found in the [RMRK's examples repository](https://github.com/rmrk-team/rmrk-examples/tree/master/contract-examples/token-attributes).
+
+The `tasks/attributes.ts` file exports all the following methods, notice that there are methods for setting and getting multiple attributes/tokens at once.
+- `configureAttribute`
+- `setAttribute`
+- `setAttributeForMultipleTokens`
+- `setMultipleAttributeForToken`
+- `setMultipleAttributesForMultipleTokens`
+- `getAttribute`
+- `getAttributeForMultipleTokens`
+- `getMultipleAttributesForToken`
+- `getMultipleAttributesForMultipleTokens`
 
 ## Bugs, doubts and help
 

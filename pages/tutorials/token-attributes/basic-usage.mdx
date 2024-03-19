@@ -154,13 +154,13 @@ pnpm hardhat attributes:configure CONTRACT_ADDRESS ATTRIBUTE_NAME ACCESS_TYPE [S
 ```
 
 Access type defines who can write to the attribute:
-- 0: Issuer
+- 0: Owner
 - 1: Collaborator
-- 2: IssuerOrCollaborator
+- 2: OwnerOrCollaborator
 - 3: TokenOwner
 - 4: SpecificAddress. In this case you must specify in the fourth argument.
 
-Let's configure our 3 attributes. Remember we have a rarity assigned by the issuer, a name which the holder can change, and a level which only the game contract can set. We will use Issuer, TokenOwner and SpecificAddress access types respectively. We will use the contract we just deployed, as for specific address we will use the account that deployed the contract to pretend it's the game contract.
+Let's configure our 3 attributes. Remember we have a rarity assigned by the owner, a name which the holder can change, and a level which only the game contract can set. We will use Owner, TokenOwner and SpecificAddress access types respectively. We will use the contract we just deployed, as for specific address we will use the account that deployed the contract to pretend it's the game contract.
 
 The first time you configure an attribute you will also need to register access control. This might removed from the final version, but for now you can do so by adding the `--first-time` flag to the command.
 
@@ -187,12 +187,12 @@ To set the attribute, you can call:
 pnpm hardhat attributes:set CONTRACT_ADDRESS TOKEN_ID TYPE ATTRIBUTE_NAME ATTRIBUTE_VALUE --network NETWORK
 ```
 
-Type is the type of the attribute, options are: 'boolean', 'int', 'string', 'address', 'bytes'. For example, to set the values for the first token we would call the following (each with a different account in a real scenario):
+Type is the type of the attribute, options are: 'boolean', 'uint', 'int', 'string', 'address', 'bytes'. For example, to set the values for the first token we would call the following (each with a different account in a real scenario):
 
 ```bash copy
 pnpm hardhat attributes:set 0xe020c035e3E6903370A52277257f83B9541712FA 1 string Rarity Common --network polygonMumbai
 pnpm hardhat attributes:set 0xe020c035e3E6903370A52277257f83B9541712FA 1 string Name 'My Token' --network polygonMumbai
-pnpm hardhat attributes:set 0xe020c035e3E6903370A52277257f83B9541712FA 1 int Level 5 --network polygonMumbai
+pnpm hardhat attributes:set 0xe020c035e3E6903370A52277257f83B9541712FA 1 uint Level 5 --network polygonMumbai
 ```
 
 You should see an output similar to this:
@@ -213,7 +213,7 @@ For our example:
 ```bash copy
 pnpm hardhat attributes:get 0xe020c035e3E6903370A52277257f83B9541712FA 1 string Rarity --network polygonMumbai
 pnpm hardhat attributes:get 0xe020c035e3E6903370A52277257f83B9541712FA 1 string Name --network polygonMumbai
-pnpm hardhat attributes:get 0xe020c035e3E6903370A52277257f83B9541712FA 1 int Level --network polygonMumbai
+pnpm hardhat attributes:get 0xe020c035e3E6903370A52277257f83B9541712FA 1 uint Level --network polygonMumbai
 ```
 
 You should see an output similar to this:
