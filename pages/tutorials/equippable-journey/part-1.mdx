@@ -10,8 +10,8 @@ We have chosen the **PreMint** implementation because it allows us, contract own
 
 ##### The use cases that will be explored are:
 
-- Creation of an NFT collection that supports composable and equippable NF.
-- Configuration of equippibality in parent, child and catalog.
+- Creation of an NFT collection that supports composable and equippable NFTs.
+- Configuration of equippability in parent, child and catalog.
 - Equipping NFTs into another.
 
 We will guide you through the process using both Remix and Hardhat, starting from the code [wizard](/quick-start/wizard) in each case.
@@ -38,7 +38,7 @@ Open a terminal on your project folder and install the dependencies with your fa
 Go to [wizard.rmrk.dev](https://wizard.rmrk.dev/) and configure the Chunkies contract. 
 1. Set the name to "Chunkies"
 2. Set the symbol "CHNK"
-3. Select *Module* to be **Equippable** 
+3. Select *Module* to be **Equipable** 
 4. Select *Mint Method* to **Pre-Mint**
 5. Enable *Auto-accept children* option. We will use this to configure automatic accceptance of known equippable children.
 6. Download the contract and place it under the `contracts` folder of the cloned repository.
@@ -57,7 +57,7 @@ Without reloading or changing the configuration on the "Smart Contract" tab, go 
 4. Set Royalty percentage to 3%.
 5. Enable the "Use 2 scripts" option. This way, the wizard will generate a script with the methods to deploy and another one to actually run the deployment.
 ![Wizard Chunkies Deploy Script Configuration](/images/tutorials/equippable-chunkies/chunkies-deploy-script.png) 
-6. Copy the `deployChunkies` method into to your `deploy-methods.ts` file. Also update imports to include  `getRegistry` and `ChunkyItems`. Keep the existing methods, we will use them later.
+6. Copy the `deployChunkies` method into your `deploy-methods.ts` file. Also update imports to include  `network`, `getRegistry` and `ChunkyItems`. Keep the existing methods, we will use them later.
 7. Download the second script, which runs the deploy. You may overwrite the existing `scripts/run-deploy.ts` file.
 
 ### Create the Chunkies Items contract
@@ -65,7 +65,7 @@ Without reloading or changing the configuration on the "Smart Contract" tab, go 
 Go to [wizard.rmrk.dev](https://wizard.rmrk.dev/) and configure the Chunky Items contract. 
 1. Set the name to "ChunkyItems"
 2. Set the symbol "CHNKITM"
-3. Select *Module* to be **Equippable** 
+3. Select *Module* to be **Equipable** 
 4. Select *Mint Method* to **Pre-Mint**
 5. Download the contract and place it under the `contracts` folder of the cloned repository.
 
@@ -81,7 +81,7 @@ Without reloading or changing the configuration on the "Smart Contract" tab, go 
 4. Set Royalty percentage to 3%.
 5. Enable the "Use 2 scripts" option. This way, the wizard will generate a script with the methods to deploy and another one to actually run the deployment.
 ![Wizard Chunkies Deploy Script Configuration](/images/tutorials/equippable-chunkies/chunky-items-deploy-script.png) 
-6. Copy the `deployChunkyItems` method into to your `deploy-methods.ts` file. Also update import from `typechain-files` to include `ChunkyItems`
+6. Copy the `deployChunkyItems` method into your `deploy-methods.ts` file. Also update import from `typechain-types` to include `ChunkyItems`
 7. On your `run-deploy.ts` file, add the `deployChunkyItems` import and add a call to it after `deployChunkies` method. Your file should look like this:
 
 
@@ -111,10 +111,10 @@ import {
   RMRKCatalogUtils,
   RMRKCollectionUtils,
   RMRKEquipRenderUtils,
+  RMRKRoyaltiesSplitter,
 } from '../typechain-types';
 import { getRegistry } from './get-gegistry';
 import { delay, isHardhatNetwork } from './utils';
-import * as C from './constants';
 
 // Add your deploy methods here:
 
@@ -221,7 +221,7 @@ Create a `.env` file by copying and renaming the `.env.example` file. Remember t
 In the `.env` file, set the `{BLOCK_SCANNER}_API_KEY` for the networks you want to use. You can get keys easily from the block scanner of your network. This is also not needed for local tests since contract verification is skipped when running on hardhat network.
 
 <Callout type="info">
-    `API_KEY` from block scanners can be acquired by signing in from the **mainnet** chain explorer, registration is free. The `API_KEY` you get from it works for production and testing networks. Here are the block scanners from the most common networks: [Ethereum](https://etherscan.io/), [Polgyon](https://polygonscan.com/), [Moonbeam](https://moonbeam.moonscan.io/), [Astar](https://blockscout.com/astar/), [Base](https://basescan.org/), [BSC](https://bscscan.com/).
+    `API_KEY` from block scanners can be acquired by signing in from the **mainnet** chain explorer, registration is free. The `API_KEY` you get from it works for production and testing networks. Here are the block scanners from the most common networks: [Ethereum](https://etherscan.io/), [Polgyon](https://polygonscan.com/), [Moonbeam](https://moonbeam.moonscan.io/), [Astar](https://astar.blockscout.com/), [Base](https://basescan.org/), [BSC](https://bscscan.com/).
 </Callout>
 
 ### Compile the contracts and deploy to local hardhat network:
@@ -255,7 +255,7 @@ Congratulations! You have deployed your first **Equippable & Composable** contra
 ### Prepare a file with constants.
 
 To avoid having mysterious numbers during configuration of our contract, let's define all the ones we plan to use in a `constants.ts` file under `scripts` directory. It will include:
-- IPFS Uris for collect-ions and catalog metadata.
+- IPFS Uris for collections and catalog metadata.
 - Base IPFS
 - Fixed and slot part ids for chunkies.
 - Indexes for each fixed and slot parts.
