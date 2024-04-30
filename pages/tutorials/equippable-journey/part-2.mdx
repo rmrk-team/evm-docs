@@ -8,7 +8,7 @@ Chunkies are mystical creatures with 3 attributes which can have different color
 
 For the combination of attributes we will be using Fixed parts, these must be defined in the catalog and every chunky asset will pick one of each. This is in a nutshell what composable NFTs are about: You define a set of possible fixed parts on the catalog and you can compose assets from it.
 
-To have the chunkies be able to equip items, we will use the equippable feature. The slot parts in this case, must also be defined in the catalog and the chunky asset must also point at them. The collections which can be equipped into such slot must be configured, and the those also need to point at the slot they can be equipped into. It sounds like a lot, but it ensures that only compatible assets can be equipped into each other.
+To have the chunkies be able to equip items, we will use the equippable feature. The slot parts in this case, must also be defined in the catalog and the chunky asset must also point at them. The collections which can be equipped into such slot must be configured, and the equippable groups assigned to the items assets also need to point at the slot they can be equipped into. It sounds like a lot, but it ensures that only compatible assets can be equipped into each other.
 
 <Steps>
 
@@ -20,9 +20,18 @@ On our `scripts/deploy-methods.ts` file, let's import the constants and the type
 
 ```typescript copy
 import { ethers, run, network } from 'hardhat';
-import { Chunkies, ChunkyItems, RMRKCatalogImpl } from '../typechain-types';
+import {
+  Chunkies,
+  ChunkyItems,
+  RMRKCatalogImpl,
+  RMRKBulkWriter,
+  RMRKCatalogUtils,
+  RMRKCollectionUtils,
+  RMRKEquipRenderUtils,
+  RMRKRoyaltiesSplitter,
+} from '../typechain-types';
 import { getRegistry } from './get-gegistry';
-import { delay } from './utils';
+import { delay, isHardhatNetwork } from './utils';
 import * as C from './constants';
 ```
 
@@ -30,10 +39,10 @@ import * as C from './constants';
     `RMRKCatalogImpl` is our ready to use implementation of the catalog, in most cases you do not need any customization so we can use it as it is. Typechain is aware of it since we conveniently import it together with utilities inside the `MockRMRKRegistry.sol` file.
 </Callout>
 
-Next we will define a method to configure the catalog, where we will simply add all parts to it. We will be adding 2 slot parts and 9 fixed parts: 3 heads, 3 bodies and 3 hands. For each of them we will use the ID we defined in the constants file, a good practice is to have a big gap between the IDs of the fixed parts and the slot parts to avoid confusions, so we start the slot parts at 1000. For each part we need to set the type, be it Slot (1) or Fixed (2), the z-index (which is the order in which they will be rendered) and the metadata URI of the part. 
+Next we will define a method to configure the catalog, where we will simply add all parts to it. We will be adding 2 slot parts and 9 fixed parts: 3 heads, 3 bodies and 3 hands. For each of them we will use the ID we defined in the constants file, a good practice is to have a big gap between the IDs of the fixed parts and the slot parts to avoid confusions, so we start the slot parts at 1000. For each part we need to set the type, be it Slot (1) or Fixed (2), the z-index (which is the order in which they will be rendered) and the metadata URI of the part. For slot parts the contract address of equippable items also needs to be added.
 
 <Callout type="info">
-    The contents of the matadata for slot parts simply need the name of the slot, for fixed parts need the mediaURI pointing to the media file to be used to render any asset that includes it, both can have additional data. See [Fixed Parts](../metadata#fixed-parts-metadata) and [Slot Parts](../metadata#slot-parts-metadata) Metadata for more information.
+    The contents of the metadata for slot parts simply need the name of the slot, while fixed parts also need the mediaURI pointing to the media file to be used to render any asset that includes it, both can have additional data. See [Fixed Parts](../../metadata#fixed-parts-metadata) and [Slot Parts](../../metadata#slot-parts-metadata) Metadata for more information.
 </Callout>
 
 You can use the metadata we provide. The contents are included in the [github project](https://github.com/rmrk-team/rmrk-examples/tree/master/contract-examples/chunkies). The method will look like this:
@@ -180,7 +189,7 @@ First let's see the typical way to do it in 3-4 steps.
 1. Add the equippable asset entry
 2. Mint the chunky
 3. Add the asset to the token
-4. Accept the asset. This is not necessary if using the one of the ready to use implementations since they automatically accept the first asset added to a token.
+4. Accept the asset. This is not necessary if using one of the ready to use implementations since they automatically accept the first asset added to a token.
 
 <Callout>
     Equippable Group Id. This value is only important when the asset is meant to be equipped into another one. For chunkies we could simply set it to zero, but we give the same value to every asset in case we later want to allow chunkies to be equipped into some other collection.
@@ -192,12 +201,12 @@ let tx = await chunkies.addEquippableAssetEntry(
     catalogAddress, // Catalog address
     `${C.BASE_IPFS_URI}/chunkies/full/1.json`, // Metadata URI, we are using the same as tokenURI. We could also use a fallback one for all.
     [
-    // Fixed and slots part ids:
-    C.CHUNKY_V1_HEAD_FIXED_PART_ID,
-    C.CHUNKY_V1_BODY_FIXED_PART_ID,
-    C.CHUNKY_V1_HANDS_FIXED_PART_ID,
-    C.CHUNKY_LEFT_HAND_SLOT_PART_ID,
-    C.CHUNKY_RIGHT_HAND_SLOT_PART_ID,
+      // Fixed and slots part ids:
+      C.CHUNKY_V1_HEAD_FIXED_PART_ID,
+      C.CHUNKY_V1_BODY_FIXED_PART_ID,
+      C.CHUNKY_V1_HANDS_FIXED_PART_ID,
+      C.CHUNKY_LEFT_HAND_SLOT_PART_ID,
+      C.CHUNKY_RIGHT_HAND_SLOT_PART_ID,
     ],
 );
 await tx.wait();
@@ -333,7 +342,7 @@ We will have 4 items in this tutorial: Bone, Flag, Pencil and Spear. For each of
 The common way we might do this is by doing 2 calls to add equippable asset entries:
 
 ```typescript copy
-let tx = await items.addEquippableAssetEntry(
+  let tx = await items.addEquippableAssetEntry(
     C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND, // Equippable group
     ethers.ZeroAddress, // Catalog address
     `${C.BASE_IPFS_URI}/items/bone/left.json`, // Metadata URI
@@ -376,28 +385,28 @@ export async function addItemAssets(items: ChunkyItems, chunkiesAddress: string)
     C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND,
     C.EQUIPPABLE_GROUP_FOR_ITEMS_RIGHT_HAND,
     `${C.BASE_IPFS_URI}/items/bone/left.json`, // Asset for left hand
-    `${C.BASE_IPFS_URI}/items/bone/right.json`, // Asset for left hand
+    `${C.BASE_IPFS_URI}/items/bone/right.json`, // Asset for right hand
   );
 
   tx = await items.addHandItemAssets(
     C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND,
     C.EQUIPPABLE_GROUP_FOR_ITEMS_RIGHT_HAND,
     `${C.BASE_IPFS_URI}/items/flag/left.json`, // Asset for left hand
-    `${C.BASE_IPFS_URI}/items/flag/right.json`, // Asset for left hand
+    `${C.BASE_IPFS_URI}/items/flag/right.json`, // Asset for right hand
   );
   await tx.wait();
   tx = await items.addHandItemAssets(
     C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND,
     C.EQUIPPABLE_GROUP_FOR_ITEMS_RIGHT_HAND,
     `${C.BASE_IPFS_URI}/items/pencil/left.json`, // Asset for left hand
-    `${C.BASE_IPFS_URI}/items/pencil/right.json`, // Asset for left hand
+    `${C.BASE_IPFS_URI}/items/pencil/right.json`, // Asset for right hand
   );
   await tx.wait();
   tx = await items.addHandItemAssets(
     C.EQUIPPABLE_GROUP_FOR_ITEMS_LEFT_HAND,
     C.EQUIPPABLE_GROUP_FOR_ITEMS_RIGHT_HAND,
     `${C.BASE_IPFS_URI}/items/spear/left.json`, // Asset for left hand
-    `${C.BASE_IPFS_URI}/items/spear/right.json`, // Asset for left hand
+    `${C.BASE_IPFS_URI}/items/spear/right.json`, // Asset for right hand
   );
   await tx.wait();
 
@@ -591,7 +600,7 @@ Now let's create a script to configure everything and mint NFTs. We could also i
 ```typescript copy
 import { ethers } from 'hardhat';
 import getDeployedContracts from './get-deployed-contracts';
-import { configureCatalog, mintChunkies, addItemAssets, mintItems } from './deploy';
+import { configureCatalog, mintChunkies, addItemAssets, mintItems } from './deploy-methods';
 
 async function main() {
   const { chunkies, chunkyItems, catalog } = await getDeployedContracts();
@@ -652,7 +661,6 @@ On the other terminal let's first run 3 scripts to:
 pnpm hardhat run scripts/run-deploy.ts --network localhost
 pnpm hardhat run scripts/run-deploy-catalog.ts --network localhost
 pnpm hardhat run scripts/run-deploy-utils.ts --network localhost
-```
 ```
 
 You will see a outputs similar to:
