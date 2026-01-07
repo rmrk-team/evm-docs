@@ -217,7 +217,7 @@ You may add a `nestTransfer` on top of the `nestTransferFrom` method, which uses
 
 In order to become part of the array of active children, a proposed child must be accepted first. This should be done by either the owner of the parent token, or an approved party.
 
-You may implement your own auto accept mechanism. The ready to use implementations by default auto accept the first asset, or assets added by the owner of the token. On [RMRK's wizard](https://wizard.rmrk.dev/), you can also create contracts with a method to define and auto-accept children from certain collections.
+You may implement your own auto accept mechanism. The ready to use implementations by default auto accept the first asset, or assets added by the owner of the token. On [RMRK's wizard](https://wizard.rmrk.app/), you can also create contracts with a method to define and auto-accept children from certain collections.
 
 The `childIndex` parameter is an annoying detail, but it prevents the contract from having to do gas expensive operations, either:
 * Iterate over the list of pending children to find the index.

@@ -495,7 +495,7 @@ export async function mintItems(items: ChunkyItems, chunkiesAddress: string) {
 
   const [deployer] = await ethers.getSigners();
 
-  // We are using left hand asset as tokenURI. This is the simplest path. Alternatively, we could have used a custom implementation which does not require tokenURI on mint, but gets it from the the asset with the highest priority or the first asset. Both options can easily be created on wizard.rmrk.dev
+  // We are using left hand asset as tokenURI. This is the simplest path. Alternatively, we could have used a custom implementation which does not require tokenURI on mint, but gets it from the the asset with the highest priority or the first asset. Both options can easily be created on wizard.rmrk.app
 
   // Sending a bone NFT to the first chunky, with 2 assets, one for each hand
   let tx = await items.nestMintWithAssets(
